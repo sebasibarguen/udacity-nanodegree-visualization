@@ -31,30 +31,56 @@ var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a',
     { name: 'Sunday', abbr: 'Su' }
   ];
 
-d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
+d3.csv("data/2004-DateTime.csv", function(error, flights) {
 
   // Various formatters.
-  var formatNumber = d3.format(",d"),
-      formatChange = d3.format("+,d"),
-      formatDate = d3.time.format("%B %d, %Y"),
-      formatTime = d3.time.format("%I:%M %p");
+  // var formatNumber = d3.format(",d"),
+  //     formatChange = d3.format("+,d"),
+  //     formatDate = d3.time.format("%B %d, %Y"),
+  //     formatTime = d3.time.format("%I:%M %p");
 
   // A nest operator, for grouping the flight list.
-  var nestByDate = d3.nest()
-      .key(function(d) { return d3.time.day(d.Date); });
+  // var nestByYear = d3.nest()
+  //     .key(function(d) { return d3.time.day(d.Year); });
 
   // A little coercion, since the CSV is untyped.
   flights.forEach(function(d, i) {
     d.index = i;
-    d.date = new Date(d.Year, +d.Month - 1, d.DayofMonth, d.CRSDepTime);
-    d.year = +d.Year;
-    d.delay = +d.DepDelay;
-    d.distance = +d.Distance;
+    // d.DateTime = new Date(d.DateTime);
+    d.Time = +d.Time;
+    d.DayOfWeek = +d.DayOfWeek;
+    d.Year = +d.Year;
+    d.DepDelay = +d.DepDelay;
+    d.Distance = +d.Distance;
   });
 
   createTiles();
 
+
+  var min = d3.min(flights, function (d) { return d.DepDelay; });
+  var max = d3.max(flights, function (d) { return d.DepDelay; });
+  var bucket = d3.scale.quantize().domain([min, max]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+
+
+  for (var i=0; i < flights.length; i++) {
+
+    var delay = flights[i].DepDelay;
+    var color = bucket(delay);
+
+    var dS = flights[i].DateTime.split("-");
+    var datetime = new Date(dS[0], dS[1], dS[2], dS[3]);
+    var day = datetime.getDay();
+    var hour = datetime.getHours();
+
+    console.log("#d" + day + "h" + hour + " .tile .front  ---- " + color);
+
+    d3.select("#d" + day + "h" + hour + " .tile .front").classed('q' + color + '-11', true);
+  }
+
+  // flipTiles();
+
   debugger;
+
 
 
 
@@ -90,10 +116,41 @@ function createTiles() {
 
 function colorTiles() {
 
-  var bucket = d3.scale.quantize().domain([0, 50]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
 
 
-  d3.select("#d0h0 .tile .front").classed('q2-11', true);
+}
 
+function flipTiles() {
+
+	var oldSide = d3.select('#tiles').attr('class'),
+		newSide = '';
+
+	if (oldSide == 'front') {
+		newSide = 'back';
+	} else {
+		newSide = 'front';
+	}
+
+	var flipper = function(h, d, side) {
+		return function() {
+			var sel = '#d' + d + 'h' + h + ' .tile',
+				rotateY = 'rotateY(180deg)';
+
+			if (side === 'back') {
+				rotateY = 'rotateY(0deg)';
+			}
+
+			d3.select(sel).style('-webkit-transform', rotateY);
+
+		};
+	};
+
+	for (var h = 0; h < hours.length; h++) {
+		for (var d = 0; d < days.length; d++) {
+			var side = d3.select('#tiles').attr('class');
+			setTimeout(flipper(h, d, side), (h * 20) + (d * 20) + (Math.random() * 100));
+		}
+	}
+	d3.select('#tiles').attr('class', newSide);
 }

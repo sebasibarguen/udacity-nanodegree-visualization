@@ -12,13 +12,18 @@ np_concat = np.vectorize(concat)
 
 
 def hours(t):
+    try:
+        t = float(t)
+    except:
+        return -1
+
     t = str(t).split(".")[0]
     if len(t) == 3:
         return t[:1]
     else:
         return t[:2]
 
-data_files = ["2004", "2005", "2006", "2007", "2008"]
+data_files = ["2004"]
 def group_data_by(group=["Date"]):
 
     grouped_list = []
@@ -42,6 +47,6 @@ def group_data_by(group=["Date"]):
 
 
     # Save to new CSV
-    all_data.to_csv("data/2004-2008-{0}.csv".format(group[0]))
+    all_data.to_csv("data/2004-{0}.csv".format(group[0]))
 
 group_data_by(group=["DateTime"])
