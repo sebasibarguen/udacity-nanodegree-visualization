@@ -12,3 +12,7 @@ include all feedback you received from others on your visualization from the fir
 
 ## Resources
 list any sources you consulted to create your visualization
+
+- [Trulia 247 visualization](http://www.trulia.com/vis/tru247/)
+- [D3 Documentation]()
+- [Dimple Documentation]() 

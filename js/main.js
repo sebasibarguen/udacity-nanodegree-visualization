@@ -33,12 +33,6 @@ var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a',
 
 d3.csv("data/2004-DateTime.csv", function(error, flights) {
 
-  // Various formatters.
-  // var formatNumber = d3.format(",d"),
-  //     formatChange = d3.format("+,d"),
-  //     formatDate = d3.time.format("%B %d, %Y"),
-  //     formatTime = d3.time.format("%I:%M %p");
-
   // A nest operator, for grouping the flight list.
   // var nestByYear = d3.nest()
   //     .key(function(d) { return d3.time.day(d.Year); });
@@ -72,16 +66,10 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
     var day = datetime.getDay();
     var hour = datetime.getHours();
 
-    console.log("#d" + day + "h" + hour + " .tile .front  ---- " + color);
-
-    d3.select("#d" + day + "h" + hour + " .tile .front").classed('q' + color + '-11', true);
+    d3.select("#d" + day + "h" + hour + " .tile .back").classed('q' + color + '-11', true);
   }
 
-  // flipTiles();
-
-  debugger;
-
-
+  flipTiles();
 
 
 });
