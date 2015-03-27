@@ -4,16 +4,18 @@ var svg = dimple.newSvg("#chartContainer", 590, 400);
 
 d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
   // data = dimple.filterData(flights, "Year", "2004")
-  var myChart = new dimple.chart(svg, flights);
-  myChart.setBounds(60, 30, 505, 305);
-  var x = myChart.addCategoryAxis("x", "Month");
+  var lineChart = new dimple.chart(svg, flights);
+  lineChart.setBounds(60, 30, 505, 305);
+  var x = lineChart.addCategoryAxis("x", "Month");
   x.addOrderRule("Month");
-  myChart.addMeasureAxis("y", "DepDelay");
-  myChart.addLegend(60, 10, 500, 20, "right");
-  var s = myChart.addSeries("Year", dimple.plot.line);
+  lineChart.addMeasureAxis("y", "DepDelay");
+  lineChart.addLegend(60, 10, 500, 20, "right");
+  var s = lineChart.addSeries("Year", dimple.plot.line);
 
 
-  myChart.draw();
+  lineChart.draw();
+
+
 
 });
 
@@ -31,6 +33,8 @@ var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a',
     { name: 'Sunday', abbr: 'Su' }
   ];
 
+var svg = dimple.newSvg("#hourHistogram", 590, 400);
+
 d3.csv("data/2004-DateTime.csv", function(error, flights) {
 
   // A nest operator, for grouping the flight list.
@@ -39,11 +43,14 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
 
   // A little coercion, since the CSV is untyped.
   flights.forEach(function(d, i) {
+    var dateArray = d.DateTime.split("-");
+    d.dt = new Date(dateArray[0], dateArray[1], dateArray[2], dateArray[3]);
+
     d.index = i;
     // d.DateTime = new Date(d.DateTime);
-    d.Time = +d.Time;
-    d.DayOfWeek = +d.DayOfWeek;
-    d.Year = +d.Year;
+    d.Time = +d.dt.getHours();
+    d.DayOfWeek = +d.dt.getDay();
+    d.Year = +d.dt.getFullYear();
     d.DepDelay = +d.DepDelay;
     d.Distance = +d.Distance;
   });
@@ -72,15 +79,27 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
   flipTiles();
 
 
+// Dimple histogram
+
+  var histogram = new dimple.chart(svg, data);
+  histogram.setBounds(60, 30, 510, 305)
+  var x = histogram.addCategoryAxis("x", "Month");
+  x.addOrderRule("Date");
+  myChistogramhart.addMeasureAxis("y", "DepDelay");
+  histogram.addSeries(null, dimple.plot.bar);
+  histogram.draw();
+
+
 });
 
 
-/* ************************** */
+/* **************************
+* Took this function from the Trulia Graphic.
+*/
 
 function createTiles() {
 
 	var html = '<table id="tiles" class="front">';
-
 	html += '<tr><th><div>&nbsp;</div></th>';
 
 	for (var h = 0; h < hours.length; h++) {
@@ -109,6 +128,8 @@ function colorTiles() {
 
 }
 
+// Also copied this function from trulia, because the
+// animation looks so awesome :)
 function flipTiles() {
 
 	var oldSide = d3.select('#tiles').attr('class'),
