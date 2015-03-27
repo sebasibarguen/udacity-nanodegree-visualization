@@ -1,10 +1,25 @@
 
 
-var svg = dimple.newSvg("#chartContainer", 590, 400);
+var svgLine = dimple.newSvg("#chartContainer", 590, 400);
+var svgHist = dimple.newSvg("#hourHistogram", 590, 400);
 
 d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
+
+  flights.forEach(function(d, i) {
+    var dateArray = d.Date.split("-");
+    d.dt = new Date(dateArray[0], dateArray[1], dateArray[2]);
+
+    d.index = i;
+    // d.DateTime = new Date(d.DateTime);
+    d.Time = +d.dt.getHours();
+    d.DayOfWeek = +d.dt.getDay();
+    d.Year = +d.dt.getFullYear();
+    d.DepDelay = +d.DepDelay;
+    d.Distance = +d.Distance;
+  });
+
   // data = dimple.filterData(flights, "Year", "2004")
-  var lineChart = new dimple.chart(svg, flights);
+  var lineChart = new dimple.chart(svgLine, flights);
   lineChart.setBounds(60, 30, 505, 305);
   var x = lineChart.addCategoryAxis("x", "Month");
   x.addOrderRule("Month");
@@ -14,8 +29,6 @@ d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
 
 
   lineChart.draw();
-
-
 
 });
 
@@ -32,8 +45,6 @@ var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a',
     { name: 'Saturday', abbr: 'Sa' },
     { name: 'Sunday', abbr: 'Su' }
   ];
-
-var svg = dimple.newSvg("#hourHistogram", 590, 400);
 
 d3.csv("data/2004-DateTime.csv", function(error, flights) {
 
@@ -79,15 +90,16 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
   flipTiles();
 
 
-// Dimple histogram
+  // Dimple histogram
 
-  var histogram = new dimple.chart(svg, data);
+  var histogram = new dimple.chart(svgHist, flights);
   histogram.setBounds(60, 30, 510, 305)
-  var x = histogram.addCategoryAxis("x", "Month");
-  x.addOrderRule("Date");
-  myChistogramhart.addMeasureAxis("y", "DepDelay");
+  var x = histogram.addCategoryAxis("x", "Time");
+  x.addOrderRule("Time");
+  histogram.addMeasureAxis("y", "DepDelay");
   histogram.addSeries(null, dimple.plot.bar);
   histogram.draw();
+
 
 
 });
