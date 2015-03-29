@@ -23,6 +23,13 @@ d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
     d.Distance = +d.Distance;
   });
 
+  flights = flights.filter(function(d){
+    if(d.Year == 2009){
+        return false;
+    }
+    return true;
+  });
+
   // data = dimple.filterData(flights, "Year", "2004")
   var lineChart = new dimple.chart(svgLine, flights);
   lineChart.setBounds(60, 30, 505, 305);
@@ -71,7 +78,7 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
     d.Distance = +d.Distance;
   });
 
-  data = flights.filter(function(d){
+  flights = flights.filter(function(d){
     if(isNaN(d.Time)){
         return false;
     }
@@ -84,7 +91,6 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
 
   var min = d3.min(flights, function (d) { return d.DepDelay; });
   var max = d3.max(flights, function (d) { return d.DepDelay; });
-  console.log(max);
   var bucket = d3.scale.quantize().domain([min, max]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
 

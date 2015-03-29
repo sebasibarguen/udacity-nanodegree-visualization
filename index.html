@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -11,7 +11,6 @@
   <!-- Place favicon.ico in the root directory -->
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
   <link rel="stylesheet" href="css/main.css">
 
 </head>
@@ -20,7 +19,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1 class="text-center">Flight <b>departure delay</b> from all US airports</h1>
+        <h1 class="text-center">Do flight delays in the US vary depending on the <b>date</b>?
+        </h1>
+        <h1 class="text-center"><small>Month, day of week and hour of day.<small></h1>
+        <!-- <h2>Flight <b>departure delay</b> from all US airports</h2> -->
       </div>
     </div>
 
@@ -30,7 +32,7 @@
       <div class="col-md-12">
 
         <h2 class="text-center">Departure delay by <b>hour of day</b> and <b>day of week</b> <small>24/7</small></h2>
-
+        <p>The data is summed by hour and day of week, which is the total amount of time delay, not the average</p>
         <table class="rbow2">
           <tr>
             <td class="q1-11 legend-tile"></td>
@@ -64,6 +66,12 @@
         <div id="visualization" class="rbow2">
         </div>
 
+        <br>
+
+
+        <p class="lead">The highest delays tend to happen on Monday between 6-9pm</p>
+
+
       </div>
     </div>
 
@@ -91,7 +99,17 @@
   </div>
 
   <footer>
-    The 247 graphic is based on <a href="">Trulias 247 graphic.</a> The code was adapted to use Rita flight data.
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <p>
+            The 247 graphic is based on <a href="">Trulias 247 graphic.</a>
+            The code was adapted to use Rita flight data.
+          </p>
+        </div>
+      </div>
+    </div>
   </footer>
 
 
