@@ -1,4 +1,9 @@
+/*
+This graphic is inspired (and borrowed some code) from
+Trulias 247 visualization: trulia.com/vis/tru247/
 
+
+*/
 
 var svgLine = dimple.newSvg("#chartContainer", 590, 400);
 var svgHist = dimple.newSvg("#hourHistogram", 590, 400);
@@ -66,25 +71,31 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
     d.Distance = +d.Distance;
   });
 
-  createTiles();
+  data = flights.filter(function(d){
+    if(isNaN(d.Time)){
+        return false;
+    }
+    d.Time = parseInt(d.Time);
+    return true;
+  });
 
+
+  createTiles();
 
   var min = d3.min(flights, function (d) { return d.DepDelay; });
   var max = d3.max(flights, function (d) { return d.DepDelay; });
+  console.log(max);
   var bucket = d3.scale.quantize().domain([min, max]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
 
   for (var i=0; i < flights.length; i++) {
 
-    var delay = flights[i].DepDelay;
+    var f = flights[i];
+
+    var delay = f.DepDelay;
     var color = bucket(delay);
 
-    var dS = flights[i].DateTime.split("-");
-    var datetime = new Date(dS[0], dS[1], dS[2], dS[3]);
-    var day = datetime.getDay();
-    var hour = datetime.getHours();
-
-    d3.select("#d" + day + "h" + hour + " .tile .back").classed('q' + color + '-11', true);
+    d3.select("#d" + f.DayOfWeek + "h" + f.Time + " .tile .back").classed('q' + color + '-11', true);
   }
 
   flipTiles();

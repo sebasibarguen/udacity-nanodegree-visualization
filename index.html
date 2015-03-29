@@ -20,15 +20,46 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1 class="text-center">Flight delays</h1>
+        <h1 class="text-center">Flight <b>departure delay</b> from all US airports</h1>
       </div>
     </div>
-  </div>
 
-  <div class="container">
+    <br>
+
     <div class="row">
       <div class="col-md-12">
 
+        <h2 class="text-center">Departure delay by <b>hour of day</b> and <b>day of week</b> <small>24/7</small></h2>
+
+        <table class="rbow2">
+          <tr>
+            <td class="q1-11 legend-tile"></td>
+            <td class="q2-11 legend-tile"></td>
+            <td class="q3-11 legend-tile"></td>
+            <td class="q4-11 legend-tile"></td>
+            <td class="q5-11 legend-tile"></td>
+            <td class="q6-11 legend-tile"></td>
+            <td class="q7-11 legend-tile"></td>
+            <td class="q8-11 legend-tile"></td>
+            <td class="q9-11 legend-tile"></td>
+            <td class="q10-11 legend-tile"></td>
+            <td class="q11-11 legend-tile"></td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <p class="pull-left">No or short delay</p>
+            </td>
+            <td colspan="6" >
+              <p class="pull-right">Up to 69,785 minutes</p>
+            </td>
+          <tr>
+        </table>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
 
         <div id="visualization" class="rbow2">
         </div>
@@ -41,13 +72,13 @@
     <div class="row">
       <div class="col-md-6">
 
+        <h2>Departure delay time (minutes) per hour of day</h2>
 
-
-      <div id="hourHistogram">
+        <div id="hourHistogram">
       </div>
     </div>
     <div class="col-md-6">
-
+      <h2>Departure delay time (minutes) by month <small>For years 2004-2008</small></h2>
 
       <div id="chartContainer">
       </div>
@@ -58,6 +89,10 @@
     </div>
 
   </div>
+
+  <footer>
+    The 247 graphic is based on <a href="">Trulias 247 graphic.</a> The code was adapted to use Rita flight data.
+  </footer>
 
 
   <script src="http://d3js.org/d3.v3.min.js"></script>
