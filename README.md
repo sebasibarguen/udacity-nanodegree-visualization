@@ -5,8 +5,9 @@
 *Is there a relationship between time of day, day of week and the delay time for flights?* By looking at the [Rita Flight dataset](). This visualization presents three charts showing the relationship between **flight delay times** and
 periods of time (month/day of week and hour of day).
 
+[View the visualization](http://sebasibarguen.github.io/udacity-nanodegree-visualization/)
+
 ## Design
-explain any design choices you made including changes to the visualization after collecting feedback
 
 For the first visualization, I decided to use a calendar grid comparing how flight
 delays vary depending on the hour of day and day of week. The inspiration came from a Trulia
@@ -57,11 +58,17 @@ larger. So I implemented `process_data.py` script to take care of that.*
 
 ![Version 1](/img/visualization_v3.png)
 
-### Selecting the dataset
-For this data
+
+### Final thoughts on design
+Complementing the 24/7 grid graph with the bar chart helps clarify the message.
+
+I believe that the three charts clearly show that:
+* The worst flight delays tend to happen on **Mondays, Thursdays and Sundays around 7pm**
+* **7pm** is the hour of the day with highest flight delays on average
+* Over the year, the highest flight delays occur during **summer** and **end of year**
+
 
 ## Feedback
-include all feedback you received from others on your visualization from the first sketch to the final visualization
 
 ### First interview
 > What do the colors of the first graphic mean?
@@ -89,3 +96,5 @@ list any sources you consulted to create your visualization
 - To process the original RITA files, I built the `process_data.py` script.
 - The data used is `data/2004-DateTime.csv` for the first two visualizations,
 and `data/data/2004-2008-by-date.csv` for the line chart.
+
+http://sebasibarguen.github.io/udacity-nanodegree-visualization/

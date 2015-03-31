@@ -10,6 +10,7 @@ var svgHist = dimple.newSvg("#hourHistogram", 590, 400);
 
 d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
 
+  // Clean up the data
   flights.forEach(function(d, i) {
     var dateArray = d.Date.split("-");
     d.dt = new Date(dateArray[0], dateArray[1], dateArray[2]);
@@ -30,7 +31,7 @@ d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
     return true;
   });
 
-  // data = dimple.filterData(flights, "Year", "2004")
+  // build the line chart
   var lineChart = new dimple.chart(svgLine, flights);
   lineChart.setBounds(60, 30, 505, 305);
   var x = lineChart.addCategoryAxis("x", "Month");
@@ -46,7 +47,7 @@ d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
 
 
 
-//
+// helper variables to build visualization
 var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12p', '1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p'],
   days = [
     { name: 'Monday', abbr: 'Mo' },
@@ -97,10 +98,11 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
     return true;
   });
 
-  // A nest operator, for grouping the flight list.
+  // A nest operator, for grouping the flight list into the newly created
+  // variable, TimeDay, which is basically a Day of Week (0-6) together with
+  // the hour of day (0-23).
   var flights = d3.nest()
       .key(function(d) {return d.TimeDay; })
-      // .key(function(d) { return d.DayOfWeek; })
       .rollup(function(d) {
         var result = {"DepDelay": d3.mean(d, function(g) { return g.DepDelay;}),
                       "Time": d3.mean(d, function(g) { return g.Time;}),
@@ -110,20 +112,23 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
       })
       .entries(flights);
 
-
+  // The nested operation gives back a list of objects that contain inside them
+  // a values object, which is actually what we want.
   for (var i = 0; i < flights.length; i++){
     flights[i] = flights[i].values
   }
 
-  debugger;
-
+  // Call the function to build the tiles.
   createTiles();
 
+  // Calculate min-max to use with D3.js scale
   var min = d3.min(flights, function (d) { return d.DepDelay; });
   var max = d3.max(flights, function (d) { return d.DepDelay; });
   var bucket = d3.scale.quantize().domain([min, max]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
 
+  // This loop assigns the CSS classes to each tile so as to assign it
+  // an appropriate color based on the `bucket` scaling domain-range relation.
   for (var i=0; i < flights.length; i++) {
 
     var f = flights[i];
@@ -136,14 +141,17 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
         .attr('delay', function(){ return delay });
   }
 
+  // Call cool animation.
   flipTiles();
 
+  // Trying to add tooltip for first visualization. Still not working.
   // var vis = d3.select('#visualization');
-  // var tip = d3.tip().attr('class', 'd3-tip').html(function(d) { return d; });
+  // var tip = d3.tip().attr('class', 'd3-tip').html(function(d) { return d.delay; });
   //
   // vis.call(tip);
   //
   // vis.selectAll('.tile')
+  //     .attr('delay', function(){ return delay })
   //     .on('mousover', tip.show)
   //     .on('mouseout', tip.hide)
 
