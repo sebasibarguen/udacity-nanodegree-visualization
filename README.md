@@ -19,7 +19,7 @@ three variables and make it aesthetically pleasing way. It permits us to look at
 **what's the worst day-time of the week regarding flight time delays?**, **are time delays worst
 on early Tuesdays or late Fridays?**.
 
-**Variables**
+**Visual encodings for main visualization:**
 - distance x: hour of day
 - distance y: day of week
 - color hue: flight delay time
@@ -35,6 +35,12 @@ data from all the days of the year.
 For the month graph, a line chart made more sense to show the trends in flight delay over time
 for a given year. A general pattern does emerge, which tells us more delay's happen during
 summer and end of year.
+
+### Layout
+For the layout, given that I chose to se three charts, I decided to include the larger one on top. It is
+also the primary visualization and the one that captures most attention given the colors and design, so
+I think that having the top section of the webpage makes most sense. As a complement to the main
+visualization, both the bar and line charts serve to augment the primary visualization.
 
 ### Sketch
 ![Sketch](/img/visualization_sketch.JPG)
