@@ -8,6 +8,12 @@ Trulias 247 visualization: trulia.com/vis/tru247/
 var svgLine = dimple.newSvg("#chartContainer", 590, 400);
 var svgHist = dimple.newSvg("#hourHistogram", 590, 400);
 
+var monthMap = {1:"Jan", 2:"Feb", 3:"March", 4:"Apr",
+                5:"May", 6:"June", 7:"July", 8:"Ago",
+                9:"Sep", 10:"Oct", 11:"Nov", 12:"Dec"};
+var monthArray = ["Jan", "Feb", "March", "Apr", "May", "June", "July",
+                  "Ago", "Sep", "Oct", "Nove", "Dec"]
+
 d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
 
   // Clean up the data
@@ -20,8 +26,10 @@ d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
     d.Time = +d.dt.getHours();
     d.DayOfWeek = +d.dt.getDay();
     d.Year = +d.dt.getFullYear();
+    d.Month = +d.Month;
     d.DepDelay = +d.DepDelay;
     d.Distance = +d.Distance;
+    d.MonthName = monthMap[d.Month];
   });
 
   flights = flights.filter(function(d){
@@ -34,14 +42,16 @@ d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
   // build the line chart
   var lineChart = new dimple.chart(svgLine, flights);
   lineChart.setBounds(60, 30, 505, 305);
-  var x = lineChart.addCategoryAxis("x", "Month");
-  x.addOrderRule("Month");
-  lineChart.addMeasureAxis("y", "DepDelay");
+  var x = lineChart.addCategoryAxis("x", "MonthName");
+  x.addOrderRule(monthArray);
+  var y = lineChart.addMeasureAxis("y", "DepDelay");
   lineChart.addLegend(60, 10, 500, 20, "right");
   var s = lineChart.addSeries("Year", dimple.plot.line);
 
-
   lineChart.draw();
+
+  x.titleShape.text("Month of Year");
+  y.titleShape.text("Flight Delay in minutes");
 
 });
 
@@ -59,7 +69,9 @@ var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a',
     { name: 'Sunday', abbr: 'Su' }
   ];
 
-d3.csv("data/2004-DateTime.csv", function(error, flights) {
+
+// Read the CSV
+d3.csv("data/2008-DateTime.csv", function(error, flights) {
 
 
   // A little coercion, since the CSV is untyped.
@@ -126,7 +138,7 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
   var max = d3.max(flights, function (d) { return d.DepDelay; });
   var bucket = d3.scale.quantize().domain([min, max]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
-  debugger;
+  // debugger;
 
   // This loop assigns the CSS classes to each tile so as to assign it
   // an appropriate color based on the `bucket` scaling domain-range relation.
@@ -156,23 +168,27 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
   //     .on('mousover', tip.show)
   //     .on('mouseout', tip.hide)
 
-  // Dimple histogram
 
+
+  // Dimple histogram
   var histogram = new dimple.chart(svgHist, flights);
   histogram.setBounds(60, 30, 510, 305)
   var x = histogram.addCategoryAxis("x", "Time");
   x.addOrderRule("Time");
-  histogram.addMeasureAxis("y", "DepDelay");
+  var y = histogram.addMeasureAxis("y", "DepDelay");
   histogram.addSeries(null, dimple.plot.bar);
   histogram.draw();
 
-
+  x.titleShape.text("Hours of day (24 hour format)");
+  y.titleShape.text("Flight Delay in minutes");
 
 });
 
 
 /* **************************
 * Took this function from the Trulia Graphic.
+* It creates the HTML for the first visualization. Builds the grid via an
+* HTML table, with each cell representing a tile of hour-day of week.
 */
 
 function createTiles() {
@@ -199,12 +215,6 @@ function createTiles() {
 	d3.select('#visualization').html(html);
 }
 
-function colorTiles() {
-
-
-
-
-}
 
 // Also copied this function from trulia, because the
 // animation looks so awesome :)

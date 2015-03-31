@@ -12,6 +12,11 @@ np_concat = np.vectorize(concat)
 
 
 def hours(t):
+    """
+    Helper function, takes an hour in format hhmm or hmm and
+    returns just hh.
+    """
+
     try:
         t = float(t)
     except:
@@ -23,8 +28,12 @@ def hours(t):
     else:
         return t[:2]
 
-data_files = ["2004"]
+data_files = ["2008"]
 def group_data_by(group=["Date"]):
+    """
+    Transforms the RITA original CSV files into smaller CSV files using
+    pandas group methods. It can also concatenate various years of data.
+    """
 
     grouped_list = []
 
@@ -47,6 +56,6 @@ def group_data_by(group=["Date"]):
 
 
     # Save to new CSV
-    all_data.to_csv("data/2004-{0}.csv".format(group[0]))
+    all_data.to_csv("data/2008-{0}.csv".format(group[0]))
 
-group_data_by(group=[ "DayOfWeek", "Time"])
+group_data_by(group=[ "Datetime"])

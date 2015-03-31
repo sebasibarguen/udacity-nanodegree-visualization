@@ -2,7 +2,7 @@
 
 ## Summary
 
-*Is there a relationship between time of day, day of week and the delay time for flights?* By looking at the [Rita Flight dataset](). This visualization presents three charts showing the relationship between **flight delay times** and
+By looking at the [Rita Flight dataset](http://stat-computing.org/dataexpo/2009/the-data.html), This visualization presents three charts showing the relationship between **flight delay times** and
 periods of time (month/day of week and hour of day).
 
 [View the visualization](http://sebasibarguen.github.io/udacity-nanodegree-visualization/)
@@ -15,9 +15,9 @@ graph depicting the time of day and day of week most people go house hunting. Th
 behind the design is to use hue-colors as a way to communicate the amount of delay time,
 hotter colors representing longer delays while cooler colors shorter. The reasons for choosing
 the use of colors and a grid chart is that in just one graph we are able to group the relationship between
-three variables and make it aesthetically pleasing way. It permits us to look at relationships like,
-**what's the worst day-time of the week regarding flight time delays?**, **are time delays worst
-on early Tuesdays or late Fridays?**.
+three variables and make it aesthetically pleasing way. It permits us to look at relationships like:
+**what's the worst day-time of the week regarding flight time delays?** **Are time delays worst
+on early Tuesdays or late Fridays?**
 
 **Visual encodings for main visualization:**
 - distance x: hour of day
@@ -50,7 +50,7 @@ planning to use.*
 
 ### Version 1
 
-![Version 1](/img/visualization_v1.png)
+![Version 1](https://www.evernote.com/shard/s14/sh/65887338-ebad-49cb-b477-5796b9a4dc5f/c357ef4e705f049fc6a01125aad99a53/deep/0/visualization_v1.png)
 
 *This first implementation took some time. The biggest problems where basically formatting
 the data so that the site uses an aggregate sample because the original files are* **600mb** *or
@@ -58,7 +58,7 @@ larger. So I implemented `process_data.py` script to take care of that.*
 
 ### Version 2
 
-![Version 2](/img/visualization_v2.png)
+![Version 2](https://www.evernote.com/shard/s14/sh/716fa520-b722-469a-bcfc-aacee3dfb4cc/682335413c42244825d66a7ceb6d3318/deep/0/visualization_v2.png)
 
 *For the second version, the biggest changes based on feedback were:*
 1. Include a legend for the first graph, the message was not clear.
@@ -70,7 +70,7 @@ larger. So I implemented `process_data.py` script to take care of that.*
 1. Fixed an issue with the bar chart including NaN values
 2. Removed non-existing 2009 data from line chart
 
-![Version 3](/img/visualization_v3.png)
+![Version 3](https://www.evernote.com/shard/s14/sh/a1ae0961-8fab-43f7-9598-a65499d063e4/f85453909fb4e653029eab0ac7d907af/deep/0/visualization_v3.png)
 
 
 ### Final version
@@ -78,6 +78,7 @@ larger. So I implemented `process_data.py` script to take care of that.*
 *For the third version, the biggest changes based on feedback were:*
 1. Fixed issue with some labels in first visualization being different sizes
 2. Updated the labels in legend
+3. Updated the x and y axis labels for both lower charts.
 
 ![Version 4](/img/visualization_v4.png)
 
@@ -87,15 +88,20 @@ larger. So I implemented `process_data.py` script to take care of that.*
 After hearing the feedback and thinking about the message, I believe that these three
 graphs are the right design choices.
 
-Complementing the 24/7 grid graph with the bar chart helps clarify the message. After
-collecting the feedback, the types of charts did not change, I think they express
-the message quite well, but there were some aesthetic and content changes. Mostly fixing
-either bugs, clarifying the graphs with titles, labels and legends
+Complementing the 24/7 grid graph with the bar chart helps clarify the message. The
+feedback helped with important details like fixing bugs, clarifying the graphs with
+titles, labels and legends, and making sure that all three graphs are consistent and
+give complement each other.
 
 I believe that the three charts clearly show that:
 * The worst flight delays tend to happen on **Mondays, Thursdays and Sundays around 7pm**
 * **7pm** is the hour of the day with highest flight delays on average
 * Over the year, the highest flight delays occur during **summer** and **end of year**
+
+#### Ideas for improvement
+With more time, I would of loved to:
+- [] add a dynamic grid table, with the ability to change the data for a given year
+- [] connect the hour bar chart with the grid chart
 
 
 ## Feedback
@@ -112,9 +118,19 @@ What is the purpose of the graphs?
 I like the colors and design of the graphs, but I feel they lack context.
 Months 5-9 increase DepDelay, surely because of the increased amount of flights in summer time.
 
-> -Brother
+### Second interview
+> Visualization. **Do you understand the message?** yes, a correlation is being made between the departure delays and the time of the delay with the day of the week, the hour and also the month of the year.
+**What do you notice in the visualization?** departure delays have a tendency to happen more during the afternoon, there are months with highest delays (must be high demand of travel), also on Monday and weekends.
+**What questions do you have about the data?** it will be interesting to correlate the data with the amount of demand for travel, given that delays must happen by the amount of passengers, bags, etc... that make all the process longer. Also months that have a high delay on flights are high demand months given holidays, so is it more that the airlines are overselling their flights that is causing the delays, or given the high amount of air traffic delay is prone to happen.
+**What relationships do you notice?** high amount of delays happen on late hours of the day and holiday months.
+**What do you think is the main takeaway from this visualization?** departure delays are mainly on late hours of the day and specially on Monday. Also there is a relationship year by year on the months where delays are higher so this data could help the passenger to plan ahead what hour of the day is best to travel and also to have in mind in which month delays are to be expected. Additionally is powerful information for airports to better organize air traffic and most of all for the airlines to plan ahead their flight schedule and if no major change can be made to preempt the delays they have to budget money to pay fees to passengers when delays affect their connecting flights or plans.
+**Is there something you don’t understand in the graphic?** I got a little confused with the second graphic, given that the x-axis only says time and is being based in a 24 hour clock vs the previews chart that is based in a 12 hour clock.
 
-
+### Third interview
+> The description for the colors for delay bar for the graph Departure delay by hour of day and day of week could improve. I would put on the left, "No delay" and on the right "Delayed 12,042 minutes"
+I like the design of each graph. The content now gives a great sight into what each graph is about.
+One change that might be good is to have an abbreviation of each month (jan, feb, etc...) instead of numbers for the graph Departure delay time (minutes) by month
+Overall, I see improvement with each version.
 
 ## Resources
 
