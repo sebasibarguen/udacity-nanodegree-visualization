@@ -58,36 +58,36 @@ var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a',
     { name: 'Sunday', abbr: 'Su' }
   ];
 
-d3.csv("data/2004-DayOfWeek.csv", function(error, flights) {
+d3.csv("data/2004-DateTime.csv", function(error, flights) {
 
 
   // A little coercion, since the CSV is untyped.
-  // flights.forEach(function(d, i) {
-  //   var dateArray = d.DateTime.split("-");
-  //   d.dt = new Date(dateArray[0], dateArray[1], dateArray[2], dateArray[3]);
-  //
-  //   d.index = i;
-  //   // d.DateTime = new Date(d.DateTime);
-  //   d.Time = +d.dt.getHours();
-  //   d.DayOfWeek = +d.dt.getDay();
-  //   d.Year = +d.dt.getFullYear();
-  //   d.DepDelay = +d.DepDelay;
-  //   d.Distance = +d.Distance;
-  //
-  //   d.TimeDay = toString(d.Time) + "-" + toString(d.DayOfWeek);
-  // });
-
   flights.forEach(function(d, i) {
+    var dateArray = d.DateTime.split("-");
+    d.dt = new Date(dateArray[0], dateArray[1], dateArray[2], dateArray[3]);
+
     d.index = i;
     // d.DateTime = new Date(d.DateTime);
-    d.Time = +d.Time - 1;
-    d.DayOfWeek = +d.DayOfWeek - 1;
-    d.Year = +d.Year;
+    d.Time = +d.dt.getHours();
+    d.DayOfWeek = +d.dt.getDay();
+    d.Year = +d.dt.getFullYear();
     d.DepDelay = +d.DepDelay;
     d.Distance = +d.Distance;
 
-    // d.TimeDay = toString(d.Time) + "-" + toString(d.DayOfWeek);
+    d.TimeDay = d.DayOfWeek + "-" + d.Time;
   });
+
+  // flights.forEach(function(d, i) {
+  //   d.index = i;
+  //   // d.DateTime = new Date(d.DateTime);
+  //   d.Time = +d.Time - 1;
+  //   d.DayOfWeek = +d.DayOfWeek - 1;
+  //   d.Year = +d.Year;
+  //   d.DepDelay = +d.DepDelay;
+  //   d.Distance = +d.Distance;
+  //
+  //   // d.TimeDay = toString(d.Time) + "-" + toString(d.DayOfWeek);
+  // });
 
   flights = flights.filter(function(d){
     if(isNaN(d.Time)){
@@ -98,13 +98,23 @@ d3.csv("data/2004-DayOfWeek.csv", function(error, flights) {
   });
 
   // A nest operator, for grouping the flight list.
-  // var flights = d3.nest()
-  //     .key(function(d) { return d3.time.day( d.DayOfWeek ); })
-  //     .rollup(function(d) {
-  //       return d3.sum(d, function(g) { return g.value;});
-  //     })
-  //     .entries(flights);
-  //
+  var flights = d3.nest()
+      .key(function(d) {return d.TimeDay; })
+      // .key(function(d) { return d.DayOfWeek; })
+      .rollup(function(d) {
+        var result = {"DepDelay": d3.mean(d, function(g) { return g.DepDelay;}),
+                      "Time": d3.mean(d, function(g) { return g.Time;}),
+                      "DayOfWeek": d3.mean(d, function(g) { return g.DayOfWeek;})
+        };
+        return result;
+      })
+      .entries(flights);
+
+
+  for (var i = 0; i < flights.length; i++){
+    flights[i] = flights[i].values
+  }
+
   debugger;
 
   createTiles();
