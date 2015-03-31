@@ -37,7 +37,7 @@ def group_data_by(group=["Date"]):
         data["Time"] = data["DepTime"].map(hours)
         data["DateTime"] = np_concat(data["Year"], data["Month"], data["DayofMonth"], data["Time"])
 
-        grouped_data = data.groupby(group).sum()
+        grouped_data = data.groupby(group).mean()
         grouped_list.append(grouped_data)
 
     # To append all years into a single DT
@@ -49,4 +49,4 @@ def group_data_by(group=["Date"]):
     # Save to new CSV
     all_data.to_csv("data/2004-{0}.csv".format(group[0]))
 
-group_data_by(group=["DateTime"])
+group_data_by(group=[ "DayOfWeek", "Time"])

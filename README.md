@@ -1,30 +1,74 @@
 # Data Visualization - US Flight Delays
 
 ## Summary
-in no more than 4 sentences, briefly introduce your data visualization and add any context that can help readers understand it
 
-*Is there a relationship between time of day, day of week and the time delay for flights?* By looking at the [Rita Flight dataset]() we can explore any relationship that might exist between
+*Is there a relationship between time of day, day of week and the delay time for flights?* By looking at the [Rita Flight dataset](). This visualization presents three charts showing the relationship between **flight delay times** and
+periods of time (month/day of week and hour of day).
+
+[View the visualization](http://sebasibarguen.github.io/udacity-nanodegree-visualization/)
 
 ## Design
-explain any design choices you made including changes to the visualization after collecting feedback
+
+For the first visualization, I decided to use a calendar grid comparing how flight
+delays vary depending on the hour of day and day of week. The inspiration came from a Trulia
+graph depicting the time of day and day of week most people go house hunting. The idea
+behind the design is to use hue-colors as a way to communicate the amount of delay time,
+hotter colors representing longer delays while cooler colors shorter. The reasons for choosing
+the use of colors and a grid chart is that in just one graph we are able to group the relationship between
+three variables and make it aesthetically pleasing way. It permits us to look at relationships like,
+**what's the worst day-time of the week regarding flight time delays?**, **are time delays worst
+on early Tuesdays or late Fridays?**.
+
+**Variables**
+- distance x: hour of day
+- distance y: day of week
+- color hue: flight delay time
+
+To still explore and communicate the relationship between flight delays and dates, I included
+a **bar graph** of delay time vs hours of day and a **line chart** showing the relationship
+of flight delays and the month of the year.
 
 ### Sketch
+![Sketch](/img/visualization_sketch.jpg)
 
-![Sketch](/img/visualization_sketch.png)
+*This is the first sketch I did to get an overview idea of the visualizations I was
+planning to use.*
 
 ### Version 1
 
 ![Version 1](/img/visualization_v1.png)
 
+*This first implementation took some time. The biggest problems where basically formatting
+the data so that the site uses an aggregate sample because the original files are* **600mb** *or
+larger. So I implemented `process_data.py` script to take care of that.*
+
 ### Version 2
 
 ![Version 1](/img/visualization_v2.png)
 
-### Selecting the dataset
-For this data
+*For the second version, the biggest changes based on feedback were:*
+1. Include a legend for the first graph, the message was not clear.
+2. Add chart titles and
+
+### Version 3
+
+*For the third version, the biggest changes based on feedback were:*
+1. Fixed an issue with the bar chart including NaN values
+2. Removed non-existing 2009 data from line chart
+
+![Version 1](/img/visualization_v3.png)
+
+
+### Final thoughts on design
+Complementing the 24/7 grid graph with the bar chart helps clarify the message.
+
+I believe that the three charts clearly show that:
+* The worst flight delays tend to happen on **Mondays, Thursdays and Sundays around 7pm**
+* **7pm** is the hour of the day with highest flight delays on average
+* Over the year, the highest flight delays occur during **summer** and **end of year**
+
 
 ## Feedback
-include all feedback you received from others on your visualization from the first sketch to the final visualization
 
 ### First interview
 > What do the colors of the first graphic mean?
@@ -45,3 +89,12 @@ list any sources you consulted to create your visualization
 - [Trulia 247 visualization](http://www.trulia.com/vis/tru247/)
 - [D3.JS Documentation](d3js.org)
 - [Dimple.JS Documentation](http://dimplejs.org/)
+- [Bootstrap for styling](http://getbootstrap.com)
+
+## Files
+
+- To process the original RITA files, I built the `process_data.py` script.
+- The data used is `data/2004-DateTime.csv` for the first two visualizations,
+and `data/data/2004-2008-by-date.csv` for the line chart.
+
+http://sebasibarguen.github.io/udacity-nanodegree-visualization/
