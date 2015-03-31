@@ -28,8 +28,16 @@ To still explore and communicate the relationship between flight delays and date
 a **bar graph** of delay time vs hours of day and a **line chart** showing the relationship
 of flight delays and the month of the year.
 
+A bar graph was chosen to display the relationship between hours of day and flight delay time
+because in this case, hours of the day represent a categorical data which aggregated various
+data from all the days of the year.
+
+For the month graph, a line chart made more sense to show the trends in flight delay over time
+for a given year. A general pattern does emerge, which tells us more delay's happen during
+summer and end of year.
+
 ### Sketch
-![Sketch](/img/visualization_sketch.jpg)
+![Sketch](/img/visualization_sketch.JPG)
 
 *This is the first sketch I did to get an overview idea of the visualizations I was
 planning to use.*
@@ -44,7 +52,7 @@ larger. So I implemented `process_data.py` script to take care of that.*
 
 ### Version 2
 
-![Version 1](/img/visualization_v2.png)
+![Version 2](/img/visualization_v2.png)
 
 *For the second version, the biggest changes based on feedback were:*
 1. Include a legend for the first graph, the message was not clear.
@@ -56,11 +64,27 @@ larger. So I implemented `process_data.py` script to take care of that.*
 1. Fixed an issue with the bar chart including NaN values
 2. Removed non-existing 2009 data from line chart
 
-![Version 1](/img/visualization_v3.png)
+![Version 3](/img/visualization_v3.png)
+
+
+### Final version
+
+*For the third version, the biggest changes based on feedback were:*
+1. Fixed issue with some labels in first visualization being different sizes
+2. Updated the labels in legend
+
+![Version 4](/img/visualization_v4.png)
 
 
 ### Final thoughts on design
-Complementing the 24/7 grid graph with the bar chart helps clarify the message.
+
+After hearing the feedback and thinking about the message, I believe that these three
+graphs are the right design choices.
+
+Complementing the 24/7 grid graph with the bar chart helps clarify the message. After
+collecting the feedback, the types of charts did not change, I think they express
+the message quite well, but there were some aesthetic and content changes. Mostly fixing
+either bugs, clarifying the graphs with titles, labels and legends
 
 I believe that the three charts clearly show that:
 * The worst flight delays tend to happen on **Mondays, Thursdays and Sundays around 7pm**
@@ -69,6 +93,8 @@ I believe that the three charts clearly show that:
 
 
 ## Feedback
+To validate and review my visualizations, I conducted 4 interviews. Most were completed through email
+and one using [Pixelapse](pixelapse.com). Below you can find the comments.
 
 ### First interview
 > What do the colors of the first graphic mean?
@@ -79,12 +105,12 @@ The graph in the bottom left does not have units of the time being measured (mon
 What is the purpose of the graphs?
 I like the colors and design of the graphs, but I feel they lack context.
 Months 5-9 increase DepDelay, surely because of the increased amount of flights in summer time.
+
 > -Brother
 
 
 
 ## Resources
-list any sources you consulted to create your visualization
 
 - [Trulia 247 visualization](http://www.trulia.com/vis/tru247/)
 - [D3.JS Documentation](d3js.org)

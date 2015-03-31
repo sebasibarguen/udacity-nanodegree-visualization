@@ -126,6 +126,7 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
   var max = d3.max(flights, function (d) { return d.DepDelay; });
   var bucket = d3.scale.quantize().domain([min, max]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
+  debugger;
 
   // This loop assigns the CSS classes to each tile so as to assign it
   // an appropriate color based on the `bucket` scaling domain-range relation.
