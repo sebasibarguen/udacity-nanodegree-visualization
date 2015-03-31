@@ -58,24 +58,35 @@ var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a',
     { name: 'Sunday', abbr: 'Su' }
   ];
 
-d3.csv("data/2004-DateTime.csv", function(error, flights) {
+d3.csv("data/2004-DayOfWeek.csv", function(error, flights) {
 
-  // A nest operator, for grouping the flight list.
-  // var nestByYear = d3.nest()
-  //     .key(function(d) { return d3.time.day(d.Year); });
 
   // A little coercion, since the CSV is untyped.
-  flights.forEach(function(d, i) {
-    var dateArray = d.DateTime.split("-");
-    d.dt = new Date(dateArray[0], dateArray[1], dateArray[2], dateArray[3]);
+  // flights.forEach(function(d, i) {
+  //   var dateArray = d.DateTime.split("-");
+  //   d.dt = new Date(dateArray[0], dateArray[1], dateArray[2], dateArray[3]);
+  //
+  //   d.index = i;
+  //   // d.DateTime = new Date(d.DateTime);
+  //   d.Time = +d.dt.getHours();
+  //   d.DayOfWeek = +d.dt.getDay();
+  //   d.Year = +d.dt.getFullYear();
+  //   d.DepDelay = +d.DepDelay;
+  //   d.Distance = +d.Distance;
+  //
+  //   d.TimeDay = toString(d.Time) + "-" + toString(d.DayOfWeek);
+  // });
 
+  flights.forEach(function(d, i) {
     d.index = i;
     // d.DateTime = new Date(d.DateTime);
-    d.Time = +d.dt.getHours();
-    d.DayOfWeek = +d.dt.getDay();
-    d.Year = +d.dt.getFullYear();
+    d.Time = +d.Time - 1;
+    d.DayOfWeek = +d.DayOfWeek - 1;
+    d.Year = +d.Year;
     d.DepDelay = +d.DepDelay;
     d.Distance = +d.Distance;
+
+    // d.TimeDay = toString(d.Time) + "-" + toString(d.DayOfWeek);
   });
 
   flights = flights.filter(function(d){
@@ -86,6 +97,15 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
     return true;
   });
 
+  // A nest operator, for grouping the flight list.
+  // var flights = d3.nest()
+  //     .key(function(d) { return d3.time.day( d.DayOfWeek ); })
+  //     .rollup(function(d) {
+  //       return d3.sum(d, function(g) { return g.value;});
+  //     })
+  //     .entries(flights);
+  //
+  debugger;
 
   createTiles();
 
@@ -101,11 +121,21 @@ d3.csv("data/2004-DateTime.csv", function(error, flights) {
     var delay = f.DepDelay;
     var color = bucket(delay);
 
-    d3.select("#d" + f.DayOfWeek + "h" + f.Time + " .tile .back").classed('q' + color + '-11', true);
+    d3.select("#d" + f.DayOfWeek + "h" + f.Time + " .tile .back")
+        .classed('q' + color + '-11', true)
+        .attr('delay', function(){ return delay });
   }
 
   flipTiles();
 
+  // var vis = d3.select('#visualization');
+  // var tip = d3.tip().attr('class', 'd3-tip').html(function(d) { return d; });
+  //
+  // vis.call(tip);
+  //
+  // vis.selectAll('.tile')
+  //     .on('mousover', tip.show)
+  //     .on('mouseout', tip.hide)
 
   // Dimple histogram
 
@@ -132,7 +162,7 @@ function createTiles() {
 	html += '<tr><th><div>&nbsp;</div></th>';
 
 	for (var h = 0; h < hours.length; h++) {
-		html += '<th class="h' + h + '">' + hours[h] + '</th>';
+		html += '<th class="head' + h + '">' + hours[h] + '</th>';
 	}
 
 	html += '</tr>';

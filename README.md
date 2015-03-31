@@ -3,14 +3,14 @@
 ## Summary
 in no more than 4 sentences, briefly introduce your data visualization and add any context that can help readers understand it
 
-*Is there a relationship between time of day, day of week and the time delay for flights?* By looking at the [Rita Flight dataset]() we can explore any relationship that might exist between
+*Is there a relationship between time of day, day of week and the delay time for flights?* By looking at the [Rita Flight dataset]() we can explore any relationship that might exist between
 
 ## Design
 explain any design choices you made including changes to the visualization after collecting feedback
 
 ### Sketch
 
-![Sketch](/img/visualization_sketch.png)
+![Sketch](/img/visualization_sketch.jpg)
 
 ### Version 1
 
@@ -19,6 +19,10 @@ explain any design choices you made including changes to the visualization after
 ### Version 2
 
 ![Version 1](/img/visualization_v2.png)
+
+### Version 3
+
+![Version 1](/img/visualization_v3.png)
 
 ### Selecting the dataset
 For this data

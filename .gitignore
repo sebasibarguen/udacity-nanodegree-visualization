@@ -3,3 +3,4 @@ data/original/*
 Data_Vis_Code_Files/*
 .RData
 .Rhistory
+bower_components/
