@@ -3,11 +3,13 @@ Styles guide for the flight visualizaiton.
 
 */
 
+/****
+***** Start of CSS for Grid Visualization
+****/
 .legend-tile {
 	width: 36px;
 	height: 36px;
 }
-
 
 #visualization {
 	clear: all;
