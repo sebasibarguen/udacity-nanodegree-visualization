@@ -12,7 +12,7 @@ var monthMap = {1:"Jan", 2:"Feb", 3:"March", 4:"Apr",
                 5:"May", 6:"June", 7:"July", 8:"Ago",
                 9:"Sep", 10:"Oct", 11:"Nov", 12:"Dec"};
 var monthArray = ["Jan", "Feb", "March", "Apr", "May", "June", "July",
-                  "Ago", "Sep", "Oct", "Nove", "Dec"]
+                  "Ago", "Sep", "Oct", "Nov", "Dec"];
 
 d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
 
@@ -58,7 +58,8 @@ d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
 
 
 // helper variables to build visualization
-var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12p', '1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p'],
+var hours = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
+              '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'],
   days = [
     { name: 'Monday', abbr: 'Mo' },
     { name: 'Tuesday', abbr: 'Tu' },
@@ -167,6 +168,29 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   //     .attr('delay', function(){ return delay })
   //     .on('mousover', tip.show)
   //     .on('mouseout', tip.hide)
+
+
+
+  var summary = d3.select("#summary_visualization"),
+      summaryWidth = 1000,
+      summaryHeight = 250
+      scale = d3.scale.ordinal().domain([min, max]).rangePoints([1000, 10000]),
+      minScaled = scale(min),
+      maxScaled = scale(max);
+
+
+
+  summary.style("width", summaryWidth)
+          .style("height", summaryHeight);
+
+  var circles = summary.selectAll("circle")
+                      .data([minScaled, maxScaled])
+                      .enter()
+                      .append("circle");
+
+  circles.attr("cy", summaryHeight/2);
+  circles.attr("cx", function(d, i) { return i * 500 + 50; });
+  circles.attr("r", function(d) { return Math.sqrt(d); });
 
 
 

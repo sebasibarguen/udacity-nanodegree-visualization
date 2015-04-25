@@ -100,8 +100,24 @@ I believe that the three charts clearly show that:
 
 #### Ideas for improvement
 With more time, I would of loved to:
+- [] re-aggregate data to be consistent between charts. All should be averages.
 - [] add a dynamic grid table, with the ability to change the data for a given year
-- [] connect the hour bar chart with the grid chart
+- [] add summary circle dashboard on top
+- [x] change hours to be consistent on both graphs, to 24 hour format
+- [] add information to legend to make COLORs clear. Cold - Hot
+- [] make title and subtitle more specific. shorten and more precise.
+- [] clarify what data is being used. just 2008
+- [x] move December after November
+- [] 2008 after 2007
+- [] try out cycle plot for years graph
+- [] add tooltip to big plot
+- [] change DepDelay to a more understandable name
+- [] reasons for picking bar and line
+- [] add other feedback from Pixelapse
+- [] lenght of delay and number of flights related?
+- [] add comments in Index.html and main.css
+- [] in main.js, explain commented out code or remove
+- [] improve story
 
 
 ## Feedback
