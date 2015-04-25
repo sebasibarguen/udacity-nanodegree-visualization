@@ -1,14 +1,17 @@
+/*
+Styles guide for the flight visualizaiton.
+
+*/
+
 .legend-tile {
 	width: 36px;
 	height: 36px;
 }
 
 
-
 #visualization {
 	clear: all;
 	margin-bottom: 20px;
-	height: 370px;
 	height: 285px;
 }
 
@@ -23,8 +26,9 @@
 	color: #ccc;
 }
 
-th.head7, th.head8, th.head9, th.head10, th.head11, th.head12, th.head13,
-th.head14, th.head15, th.head16, th.head17, th.head18, th.head19 {
+/* Highlight darker text color for highest
+delay time hours in Grid Visualization */
+th.head18, th.head19, th.head20 {
 	color: #444 !important;
 }
 
@@ -87,80 +91,6 @@ th.head14, th.head15, th.head16, th.head17, th.head18, th.head19 {
 	border: 1px solid white;
 }
 
-
-#legend {
-	clear: left;
-	margin-left: 24px;
-	width: 165px;
-	color: #777;
-	margin-top: 10px;
-	background: #f3f3f3;
-	border: 1px solid #f0f0f0;
-	overflow: hidden;
-	padding: 5px 7px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	font-size: 11px;
-	line-height: 11px;
-	margin-bottom: 10px;
-	margin-right: 24px;
-}
-
-#legend ul {
-	list-style-type: none;
-	overflow: hidden;
-	clear: both;
-	list-style: none;
-}
-
-#legend li {
-	float: left;
-	margin-right: 1px;
-	width: 14px;
-	height: 14px;
-}
-
-#legend p {
-	margin-top: 3px;
-}
-
-#legend p.more {
-	float: right;
-}
-
-#legend p.less {
-	float: left;
-}
-
-
-
-#hourly_values {
-	float: left;
-	width: 200px;
-}
-
-#hourly_values svg {
-	width: 300px;
-	height: 170px
-}
-
-#hourly_values svg rect {
-	fill: #ddd;
-}
-
-#hourly_values svg rect.sel {
-	fill: #444;
-}
-
-#hourly_values svg text {
-	fill: #444;
-}
-
-#hourly_values svg text.hidden {
-	display: none;
-}
-
-
 html.ie8 #visualization, html.ie9 #visualization {
 	height: 285px !important;
 }
@@ -185,16 +115,10 @@ html.ie8 #ie8_percents, #ie8_percents.ff3 {
 }
 
 
-/* 11 buckets purple to red */
+/* Color pallettes for Grid Visualization */
 
 .rbow2 .q1-11 {
 	background: #5E4FA2;
-	/*
-	border-left-color: #5b40b3;
-	border-top-color: #5b40b3;
-	border-right-color: #3e2b7a;
-	border-bottom-color: #3e2b7a;
-	*/
 }
 
 .rbow2 .q2-11 {
@@ -214,9 +138,7 @@ html.ie8 #ie8_percents, #ie8_percents.ff3 {
 }
 
 .rbow2 .q6-11 {
-	background: #FFFFBF;
 	background: #f6faaa;
-	/*border-color: #f6faaa;*/
 }
 
 .rbow2 .q7-11 {
@@ -237,99 +159,4 @@ html.ie8 #ie8_percents, #ie8_percents.ff3 {
 
 .rbow2 .q11-11 {
 	background: #9E0142;
-}
-
-
-
-
-
-.dealloc .q1-10 {
-	background: #702f9d;
-
-	border-top-color: #670c9f;
-	border-right-color: #540982;
-	border-bottom-color: #540982;
-	border-left-color: #670c9f;
-
-}
-
-.dealloc .q2-10 {
-	background: #352f9e;
-
-	border-top-color: #702f9d;
-	border-right-color: #702f9d;
-	border-bottom-color: #702f9d;
-	border-left-color: #702f9d;
-}
-
-.dealloc .q3-10 {
-	background: #2f659e;
-
-	border-top-color: #702f9d;
-	border-right-color: #702f9d;
-	border-bottom-color: #702f9d;
-	border-left-color: #702f9d;
-}
-
-.dealloc .q4-10 {
-	background: #2fa09c;
-
-	border-top-color: #702f9d;
-	border-right-color: #702f9d;
-	border-bottom-color: #702f9d;
-	border-left-color: #702f9d;
-}
-
-.dealloc .q5-10 {
-	background: #3fa42c;
-
-	border-top-color: #702f9d;
-	border-right-color: #702f9d;
-	border-bottom-color: #702f9d;
-	border-left-color: #702f9d;
-}
-
-.dealloc .q6-10 {
-	background: #9ab12d;
-
-	border-top-color: #702f9d;
-	border-right-color: #702f9d;
-	border-bottom-color: #702f9d;
-	border-left-color: #702f9d;
-}
-
-.dealloc .q7-10 {
-	background: #bdb82c;
-
-	border-top-color: #702f9d;
-	border-right-color: #702f9d;
-	border-bottom-color: #702f9d;
-	border-left-color: #702f9d;
-}
-
-.dealloc .q8-10 {
-	background: #bd9b2c;
-
-	border-top-color: #702f9d;
-	border-right-color: #702f9d;
-	border-bottom-color: #702f9d;
-	border-left-color: #702f9d;
-}
-
-.dealloc .q9-10 {
-	background: #bd7f2c;
-
-	border-top-color: #702f9d;
-	border-right-color: #702f9d;
-	border-bottom-color: #702f9d;
-	border-left-color: #702f9d;
-}
-
-.dealloc .q10-10 {
-	background: #bd5c2b;
-
-	border-top-color: #702f9d;
-	border-right-color: #702f9d;
-	border-bottom-color: #702f9d;
-	border-left-color: #702f9d;
 }

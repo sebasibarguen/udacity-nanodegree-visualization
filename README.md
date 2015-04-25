@@ -113,11 +113,15 @@ With more time, I would of loved to:
 - [] add tooltip to big plot
 - [] change DepDelay to a more understandable name
 - [] reasons for picking bar and line
-- [] add other feedback from Pixelapse
-- [] lenght of delay and number of flights related?
+- [x] add other feedback from Pixelapse
+- [] length of delay and number of flights related?
 - [] add comments in Index.html and main.css
 - [] in main.js, explain commented out code or remove
 - [] improve story
+  * start with a more relevant question to the average flyer. If you can't stand delays, what type should you book
+  your flight?
+  * This leads to natural questions of, what day of the week and month of the year are worst for delays?
+
 
 
 ## Feedback
@@ -147,6 +151,15 @@ Months 5-9 increase DepDelay, surely because of the increased amount of flights 
 I like the design of each graph. The content now gives a great sight into what each graph is about.
 One change that might be good is to have an abbreviation of each month (jan, feb, etc...) instead of numbers for the graph Departure delay time (minutes) by month
 Overall, I see improvement with each version.
+
+### Fourth interview
+> When i opened the project, what i saw at first was the title about flight delays in US. Then i skip some information and start trying to understand what graphics are saying. I started with the colourful square based graphic. I understood pretty well it´s information. Then with the blue bars i didn’t understand quickly so i skip it. By this time i started to read a little bit more other texts than could help me to read the graphics. Then i watched the third chart where i started to ask if there are a pattern of this data year by year. I saw that each year this numbers increased. finally i returned to read the second chart that in this time was more easy to understand.
+Yes, after i read all information it was clear.
+In first place that the first and second chart are very related. and for conclusion that there is a big amount of time lost in some way and this phenomenon happens depending on the time, day or month.
+The question i had was that if this situation is getting better or worse thru time.
+between the first and second chart.
+I didn’t understand why in the first chart the hour 1a is bigger than the others.
+No, after i read all information it was clear. It took me like 10min watching all the information in my phone.
 
 ## Resources
 
