@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <!-- Place favicon.ico in the root directory -->
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
 
 </head>
@@ -19,18 +19,18 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1 class="text-center">Do flight delays in the US vary depending on the <b>date</b>?
+        <h1 class="text-center">
+          <b>If you hate flight delays</b>
         </h1>
-        <h1 class="text-center"><small>Month, day of week and hour of day.</small></h1>
-        <!-- <h2>Flight <b>departure delay</b> from all US airports</h2> -->
+        <p class="text-center lead">book'em between 4am-7am</p>
       </div>
     </div>
     <!-- end of row -->
 
-    <br>
 
-    <!-- Dashboard visualization. Gives overview of flight data -->
-    <div class="row">
+    <!-- Dashboard visualization. Gives overview of flight data
+    Right now, commented out because it is not finished.
+    <div class="row summary">
       <div class="col-md-12">
         <svg id="summary_visualization"></svg>
       </div>
@@ -130,8 +130,8 @@
   </footer>
 
 
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-  <script src="http://dimplejs.org/dist/dimple.v2.1.2.min.js"></script>
+  <script src="js/d3.v3.min.js"></script>
+  <script src="js/dimple.v2.1.2.min.js"></script>
   <!-- // <script src="js/d3-tip.js"></script> -->
   <script async src="js/main.js"></script>
 

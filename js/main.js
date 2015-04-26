@@ -46,7 +46,8 @@ d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
   x.addOrderRule(monthArray);
   var y = lineChart.addMeasureAxis("y", "DepDelay");
   lineChart.addLegend(60, 10, 500, 20, "right");
-  var s = lineChart.addSeries("Year", dimple.plot.line);
+  var line = lineChart.addSeries("Year", dimple.plot.line);
+  var scatter = lineChart.addSeries("Year", dimple.plot.scatter);
 
   lineChart.draw();
 
@@ -170,27 +171,57 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   //     .on('mouseout', tip.hide)
 
 
-
-  var summary = d3.select("#summary_visualization"),
-      summaryWidth = 1000,
-      summaryHeight = 250
-      scale = d3.scale.ordinal().domain([min, max]).rangePoints([1000, 10000]),
-      minScaled = scale(min),
-      maxScaled = scale(max);
-
-
-
-  summary.style("width", summaryWidth)
-          .style("height", summaryHeight);
-
-  var circles = summary.selectAll("circle")
-                      .data([minScaled, maxScaled])
-                      .enter()
-                      .append("circle");
-
-  circles.attr("cy", summaryHeight/2);
-  circles.attr("cx", function(d, i) { return i * 500 + 50; });
-  circles.attr("r", function(d) { return Math.sqrt(d); });
+/*
+This part is commented out, trying to build another visualization that gives a
+overview of the data. Max flight time, number of flights...  
+*/
+  // var summary = d3.select("#summary_visualization"),
+  //     summaryWidth = 1000,
+  //     summaryHeight = 250,
+  //     scale = d3.scale.linear().domain([-5000, 15000]).range([1000, 10000]),
+  //     minScaled = scale(min),
+  //     maxScaled = scale(max),
+  //     minR = Math.sqrt(minScaled),
+  //     maxR = Math.sqrt(maxScaled),
+  //     cy = summaryHeight/2;
+  //
+  //
+  // var circleData = [
+  //   {"cy": cy, "cx": minR + 50, "r": minR, "class": "summary-min"},
+  //   {"cy": cy, "cx": maxR*2 + 50, "r": maxR, "class": "summary-max"}
+  // ];
+  //
+  // summary.style("width", summaryWidth)
+  //         .style("height", summaryHeight);
+  //
+  // var circles = summary.selectAll("circle")
+  //                     .data(circleData)
+  //                     .enter()
+  //                     .append("circle");
+  //
+  // circles.attr("cy", function(d, i) { return d.cy; })
+  //        .attr("cx", function(d, i) { return d.cx; })
+  //        .attr("r", function(d) { return d.r; })
+  //        .attr("class", function(d) { return d.class; })
+  //        .attr("fill-opacity", 0.80);
+  //
+  // // debugger;
+  // var labelData = [
+  //   {"y": cy - 20, "x": minR + 25, "class": "summary-labels", "text": "Min"},
+  //   {"y": cy - 20, "x": maxR*2 + 25, "class": "summary-labels", "text": "Max"},
+  //   {"y": cy, "x": minR + 25, "class": "summary-labels", "text": Math.round(min)},
+  //   {"y": cy, "x": maxR*2 + 25, "class": "summary-labels", "text": Math.round(max)}
+  // ];
+  //
+  // var labels = summary.selectAll("text")
+  //                     .data(labelData)
+  //                     .enter()
+  //                     .append("text");
+  //
+  // labels.text(function (d) { return d.text; })
+  //       .attr("y", function(d, i) { return d.y; })
+  //       .attr("x", function(d, i) { return d.x; })
+  //       .attr("class", function(d) { return d.class; });
 
 
 

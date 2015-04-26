@@ -3,6 +3,25 @@ Styles guide for the flight visualizaiton.
 
 */
 
+
+.summary {
+	background: #3288BD;
+}
+
+.summary-min {
+	fill: #66C2A5;
+}
+
+.summary-max {
+	fill: #F46D43;
+}
+
+.summary-labels {
+	fill: white;
+	font-family: "Helvetica Neue";
+	font-size: 20px;
+}
+
 /****
 ***** Start of CSS for Grid Visualization
 ****/

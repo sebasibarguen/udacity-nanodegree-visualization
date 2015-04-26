@@ -115,12 +115,13 @@ With more time, I would of loved to:
 - [] reasons for picking bar and line
 - [x] add other feedback from Pixelapse
 - [] length of delay and number of flights related?
-- [] add comments in Index.html and main.css
+- [x] add comments in `index.html` and `main.css`
 - [] in main.js, explain commented out code or remove
 - [] improve story
   * start with a more relevant question to the average flyer. If you can't stand delays, what type should you book
   your flight?
   * This leads to natural questions of, what day of the week and month of the year are worst for delays?
+  * Do it just for 2008.
 
 
 
