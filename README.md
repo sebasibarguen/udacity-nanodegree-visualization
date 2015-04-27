@@ -93,9 +93,9 @@ larger. So I implemented `process_data.py` script to take care of that.*
 6. Added tooltip to grid visualization and better explained color coding
 7. Added comments to HTML and CSS and explained commented out code.
 8. Added Pixelapse feedback (number 4)
-9.
+9. Improved pop overs for bar and line chart
 
-![Version 4](/img/visualization_v4.png)
+![Version 4](/img/visualization_v5.png)
 
 ### Final thoughts on design
 
@@ -114,9 +114,10 @@ I believe that the three charts clearly show that:
 
 #### Ideas for improvement
 
-- [ ] change DepDelay to a more understandable name in pop overs
+- [x] change DepDelay to a more understandable name in pop overs
 - [ ] reasons for picking bar and line
 - [ ] length of delay and number of flights related?
+- [ ] mention where all data comes from, and that it's all for 2008
 
 ##### For the future:
 - [ ] add a dynamic grid table, with the ability to change the data for a given year

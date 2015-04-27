@@ -88,7 +88,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   lineX.addOrderRule(monthArray);
   var lineY = lineChart.addMeasureAxis("y", "DepDelay");
   lineChart.addSeries(null, dimple.plot.line);
-  lineChart.addSeries(null, dimple.plot.scatter);
+  var dots = lineChart.addSeries(null, dimple.plot.scatter);
 
   lineChart.draw();
 
@@ -105,6 +105,13 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
                           return "#3288BD";
                           }
                      });
+
+   dots.getTooltipText = function (e) {
+                 return [
+                     "" + Math.round(e.y) + " min",
+                 ];
+             };
+
 
 
   // A nest operator, for grouping the flight list into the newly created
@@ -224,6 +231,12 @@ overview of the data. Max flight time, number of flights...
 
   x.titleShape.text("Hours of day (24 hour format)");
   y.titleShape.text("Flight Delay in minutes");
+
+  s.getTooltipText = function (e) {
+                return [
+                    "" + Math.round(e.y) + " min",
+                ];
+            };
 
   // Want to give special focus on hours which
   // have highest delay time.
