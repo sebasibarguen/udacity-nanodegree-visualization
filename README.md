@@ -100,30 +100,30 @@ I believe that the three charts clearly show that:
 
 #### Ideas for improvement
 With more time, I would of loved to:
-- [] re-aggregate data to be consistent between charts. All should be averages.
-- [] add a dynamic grid table, with the ability to change the data for a given year
-- [] add summary circle dashboard on top
+- [x] re-aggregate data to be consistent between charts. All should be averages.
 - [x] change hours to be consistent on both graphs, to 24 hour format
-- [] add information to legend to make COLORs clear. Cold - Hot
+- [x] add information to legend to make COLORs clear. Cold - Hot
 - [] make title and subtitle more specific. shorten and more precise.
-- [] clarify what data is being used. just 2008
+- [x] clarify what data is being used. just 2008
 - [x] move December after November
-- [] 2008 after 2007
+- [x] ~~2008 after 2007~~
 - [] try out cycle plot for years graph
 - [] add tooltip to big plot
-- [] change DepDelay to a more understandable name
+- [] change DepDelay to a more understandable name in pop overs
 - [] reasons for picking bar and line
 - [x] add other feedback from Pixelapse
 - [] length of delay and number of flights related?
 - [x] add comments in `index.html` and `main.css`
-- [] in main.js, explain commented out code or remove
-- [] improve story
+- [x] in main.js, explain commented out code or remove
+- [x] improve story
   * start with a more relevant question to the average flyer. If you can't stand delays, what type should you book
   your flight?
   * This leads to natural questions of, what day of the week and month of the year are worst for delays?
   * Do it just for 2008.
 
 
+- [] add a dynamic grid table, with the ability to change the data for a given year
+- [] add summary circle dashboard on top
 
 ## Feedback
 To validate and review my visualizations, I conducted 4 interviews. Most were completed through email

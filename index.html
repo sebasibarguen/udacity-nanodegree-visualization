@@ -23,7 +23,12 @@
         <h1 class="text-center">
           <b>If you hate flight delays</b>
         </h1>
-        <p class="text-center lead">don't book flights between 12am-3am</p>
+        <p class="text-center lead">don't book flights between 11pm-3am</p>
+        <p class="lead">
+          December clearly stands out as the month with longest average flight delays. So if
+          you happen to travel in December and you flight leaves between 11pm and 3am, be
+          <b>mentally prepared</b> to wait around 1 hour.
+        </p>
       </div>
     </div>
     <!-- end of row -->
@@ -47,12 +52,26 @@
       </div>
     </div>
 
+    <hr>
+
     <div class="row">
-      <div class="col-md-12">
-        <h2>Average delays by month</h2>
+      <div class="col-md-8 col-md-offset-2">
+        <h2 class="text-center">Average delays by month</h2>
         <div id="chartContainer"></div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p class="lead">
+          December clearly stands out as the month with longest average flight delays. So if
+          you happen to travel in December and you flight leaves between 11pm and 3am, be
+          <b>mentally prepared</b> to wait around 1 hour.
+        </p>
+      </div>
+    </div>
+
+    <hr>
 
 
     <!--
@@ -63,10 +82,21 @@
       <div class="col-md-12">
 
         <h2 class="text-center">Average delay by <b>hour of day</b> and <b>day of week</b> <small>24/7</small></h2>
-        <p>The following grid shows how delays depected on the horizontal axis hours of day, and on the vertical axis
-        days of the week.</p>
+        <p class="lead">
+          The following grid shows how delays depected on the
+          horizontal axis hours of day, and on the vertical axis
+          days of the week. <b>Colder colors</b> (e.g. purple and blue)
+          in the grid represent <em>shorter</em> average delay times and <b>hotter
+          colors</b> (e.g. red and orange) represent <em>longer</em> delay times.
+
+        </p>
 
         <table class="rbow2">
+          <tr>
+            <th colspan="5">
+              Legend: Color spectrum
+            </th>
+          </tr>
           <tr>
             <td class="q1-11 legend-tile"></td>
             <td class="q2-11 legend-tile"></td>

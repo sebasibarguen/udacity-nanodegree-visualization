@@ -95,6 +95,17 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   lineX.titleShape.text("Month of Year");
   lineY.titleShape.text("Flight Delay in minutes");
 
+  var lineFocus = d3.select("#chartContainer")
+                   .selectAll("circle")
+                   .attr("fill", function(d) {
+                        if (d.height > 40) {
+                            return "#D53E4F";
+                          }
+                        else {
+                          return "#3288BD";
+                          }
+                     });
+
 
   // A nest operator, for grouping the flight list into the newly created
   // variable, TimeDay, which is basically a Day of Week (0-6) together with
