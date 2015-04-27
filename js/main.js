@@ -148,22 +148,13 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
 
     d3.select("#d" + f.DayOfWeek + "h" + f.Time + " .tile .back")
         .classed('q' + color + '-11', true)
-        .attr('delay', function(){ return delay });
+        .attr('delay', function(){ return delay })
+        .attr('data-toggle', 'tooltip')
+        .attr('title', '' + Math.round(delay));
   }
 
   // Call cool animation.
   flipTiles();
-
-  // Trying to add tooltip for first visualization. Still not working.
-  // var vis = d3.select('#visualization');
-  // var tip = d3.tip().attr('class', 'd3-tip').html(function(d) { return d.delay; });
-  //
-  // vis.call(tip);
-  //
-  // vis.selectAll('.tile')
-  //     .attr('delay', function(){ return delay })
-  //     .on('mousover', tip.show)
-  //     .on('mouseout', tip.hide)
 
 
 /*
@@ -245,8 +236,6 @@ overview of the data. Max flight time, number of flights...
                           return "#3288BD";
                           }
                      });
-
-  debugger;
 
 });
 
