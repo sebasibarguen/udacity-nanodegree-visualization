@@ -102,9 +102,10 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   var flights = d3.nest()
                   .key(function(d) { return d.TimeDay; })
                   .rollup(function(d) {
-                    var result = {"DepDelay": d3.mean(d, function(g) { return g.DepDelay;}),
-                                  "Time": d3.mean(d, function(g) { return g.Time;}),
-                                  "DayOfWeek": d3.mean(d, function(g) { return g.DayOfWeek;})
+                    var result = {
+                      "DepDelay": d3.mean(d, function(g) { return g.DepDelay;}),
+                      "Time": d3.mean(d, function(g) { return g.Time;}),
+                      "DayOfWeek": d3.mean(d, function(g) { return g.DayOfWeek;})
                     };
                     return result;
                   })
@@ -123,7 +124,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   // Calculate min-max to use with D3.js scale
   var min = d3.min(flights, function (d) { return d.DepDelay; });
   var max = d3.max(flights, function (d) { return d.DepDelay; });
-  var bucket = d3.scale.quantize().domain([min, max]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+  var bucket = d3.scale.quantize().domain([15, 80]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
   // debugger;
 
@@ -216,11 +217,14 @@ overview of the data. Max flight time, number of flights...
   var x = histogram.addCategoryAxis("x", "Time");
   x.addOrderRule("Time");
   var y = histogram.addMeasureAxis("y", "DepDelay");
-  histogram.addSeries(null, dimple.plot.bar);
+  var s = histogram.addSeries(null, dimple.plot.bar);
+  s.aggregate = dimple.aggregateMethod.avg;
   histogram.draw();
 
   x.titleShape.text("Hours of day (24 hour format)");
   y.titleShape.text("Flight Delay in minutes");
+
+  debugger;
 
 });
 
