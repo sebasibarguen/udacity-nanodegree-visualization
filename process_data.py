@@ -58,4 +58,4 @@ def group_data_by(group=["Date"]):
     # Save to new CSV
     all_data.to_csv("data/2008-{0}.csv".format(group[0]))
 
-group_data_by(group=[ "Datetime"])
+group_data_by(group=[ "DateTime"])

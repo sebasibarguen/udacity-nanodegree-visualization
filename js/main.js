@@ -14,49 +14,6 @@ var monthMap = {1:"Jan", 2:"Feb", 3:"March", 4:"Apr",
 var monthArray = ["Jan", "Feb", "March", "Apr", "May", "June", "July",
                   "Ago", "Sep", "Oct", "Nov", "Dec"];
 
-d3.csv("data/2004-2008-by-date.csv", function(error, flights) {
-
-  // Clean up the data
-  flights.forEach(function(d, i) {
-    var dateArray = d.Date.split("-");
-    d.dt = new Date(dateArray[0], dateArray[1], dateArray[2]);
-
-    d.index = i;
-    // d.DateTime = new Date(d.DateTime);
-    d.Time = +d.dt.getHours();
-    d.DayOfWeek = +d.dt.getDay();
-    d.Year = +d.dt.getFullYear();
-    d.Month = +d.Month;
-    d.DepDelay = +d.DepDelay;
-    d.Distance = +d.Distance;
-    d.MonthName = monthMap[d.Month];
-  });
-
-  flights = flights.filter(function(d){
-    if(d.Year == 2009){
-        return false;
-    }
-    return true;
-  });
-
-  // build the line chart
-  var lineChart = new dimple.chart(svgLine, flights);
-  lineChart.setBounds(60, 30, 505, 305);
-  var x = lineChart.addCategoryAxis("x", "MonthName");
-  x.addOrderRule(monthArray);
-  var y = lineChart.addMeasureAxis("y", "DepDelay");
-  lineChart.addLegend(60, 10, 500, 20, "right");
-  var line = lineChart.addSeries("Year", dimple.plot.line);
-  var scatter = lineChart.addSeries("Year", dimple.plot.scatter);
-
-  lineChart.draw();
-
-  x.titleShape.text("Month of Year");
-  y.titleShape.text("Flight Delay in minutes");
-
-});
-
-
 
 // helper variables to build visualization
 var hours = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
@@ -85,6 +42,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
     // d.DateTime = new Date(d.DateTime);
     d.Time = +d.dt.getHours();
     d.DayOfWeek = +d.dt.getDay();
+    d.Month = +d.dt.getMonth();
     d.Year = +d.dt.getFullYear();
     d.DepDelay = +d.DepDelay;
     d.Distance = +d.Distance;
@@ -92,17 +50,6 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
     d.TimeDay = d.DayOfWeek + "-" + d.Time;
   });
 
-  // flights.forEach(function(d, i) {
-  //   d.index = i;
-  //   // d.DateTime = new Date(d.DateTime);
-  //   d.Time = +d.Time - 1;
-  //   d.DayOfWeek = +d.DayOfWeek - 1;
-  //   d.Year = +d.Year;
-  //   d.DepDelay = +d.DepDelay;
-  //   d.Distance = +d.Distance;
-  //
-  //   // d.TimeDay = toString(d.Time) + "-" + toString(d.DayOfWeek);
-  // });
 
   flights = flights.filter(function(d){
     if(isNaN(d.Time)){
@@ -112,24 +59,62 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
     return true;
   });
 
+  var flightsByMonth = d3.nest()
+                          .key(function(d) { return d.Month; })
+                          .rollup(function(d) {
+                            return {
+                              Month: d3.mean(d, function(g) {
+                                if (g.Month == 0) {
+                                  return 12;
+                                } else {
+                                  return g.Month;
+                                }
+                                }),
+                              DepDelay: d3.mean(d, function(g) { return g.DepDelay; })
+                              };
+                          })
+                          .entries(flights);
+
+  // The nested operation gives back a list of objects that contain inside them
+  // a values object, which is actually what we want.
+  for (var i = 0; i < flightsByMonth.length; i++){
+    flightsByMonth[i] = flightsByMonth[i].values;
+  }
+
+  // build the line chart
+  var lineChart = new dimple.chart(svgLine, flightsByMonth);
+  lineChart.setBounds(60, 30, 505, 305);
+  var lineX = lineChart.addCategoryAxis("x", "Month");
+  lineX.addOrderRule(monthArray);
+  var lineY = lineChart.addMeasureAxis("y", "DepDelay");
+  lineChart.addSeries(null, dimple.plot.line);
+  lineChart.addSeries(null, dimple.plot.scatter);
+
+  lineChart.draw();
+
+  lineX.titleShape.text("Month of Year");
+  lineY.titleShape.text("Flight Delay in minutes");
+
+
   // A nest operator, for grouping the flight list into the newly created
   // variable, TimeDay, which is basically a Day of Week (0-6) together with
   // the hour of day (0-23).
   var flights = d3.nest()
-      .key(function(d) {return d.TimeDay; })
-      .rollup(function(d) {
-        var result = {"DepDelay": d3.mean(d, function(g) { return g.DepDelay;}),
-                      "Time": d3.mean(d, function(g) { return g.Time;}),
-                      "DayOfWeek": d3.mean(d, function(g) { return g.DayOfWeek;})
-        };
-        return result;
-      })
-      .entries(flights);
+                  .key(function(d) { return d.TimeDay; })
+                  .rollup(function(d) {
+                    var result = {"DepDelay": d3.mean(d, function(g) { return g.DepDelay;}),
+                                  "Time": d3.mean(d, function(g) { return g.Time;}),
+                                  "DayOfWeek": d3.mean(d, function(g) { return g.DayOfWeek;})
+                    };
+                    return result;
+                  })
+                  .entries(flights);
+
 
   // The nested operation gives back a list of objects that contain inside them
   // a values object, which is actually what we want.
   for (var i = 0; i < flights.length; i++){
-    flights[i] = flights[i].values
+    flights[i] = flights[i].values;
   }
 
   // Call the function to build the tiles.
@@ -173,7 +158,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
 
 /*
 This part is commented out, trying to build another visualization that gives a
-overview of the data. Max flight time, number of flights...  
+overview of the data. Max flight time, number of flights...
 */
   // var summary = d3.select("#summary_visualization"),
   //     summaryWidth = 1000,
