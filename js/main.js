@@ -146,15 +146,16 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
     var delay = f.DepDelay;
     var color = bucket(delay);
 
-    d3.select("#d" + f.DayOfWeek + "h" + f.Time + " .tile .back")
+    d3.select("#d" + f.DayOfWeek + "h" + f.Time + " .tile .front")
         .classed('q' + color + '-11', true)
         .attr('delay', function(){ return delay })
         .attr('data-toggle', 'tooltip')
         .attr('title', '' + Math.round(delay));
   }
 
-  // Call cool animation.
-  flipTiles();
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
 
 
 /*
@@ -268,41 +269,4 @@ function createTiles() {
 
 	html += '</table>';
 	d3.select('#visualization').html(html);
-}
-
-
-// Also copied this function from trulia, because the
-// animation looks so awesome :)
-function flipTiles() {
-
-	var oldSide = d3.select('#tiles').attr('class'),
-		newSide = '';
-
-	if (oldSide == 'front') {
-		newSide = 'back';
-	} else {
-		newSide = 'front';
-	}
-
-	var flipper = function(h, d, side) {
-		return function() {
-			var sel = '#d' + d + 'h' + h + ' .tile',
-				rotateY = 'rotateY(180deg)';
-
-			if (side === 'back') {
-				rotateY = 'rotateY(0deg)';
-			}
-
-			d3.select(sel).style('-webkit-transform', rotateY);
-
-		};
-	};
-
-	for (var h = 0; h < hours.length; h++) {
-		for (var d = 0; d < days.length; d++) {
-			var side = d3.select('#tiles').attr('class');
-			setTimeout(flipper(h, d, side), (h * 20) + (d * 20) + (Math.random() * 100));
-		}
-	}
-	d3.select('#tiles').attr('class', newSide);
 }
