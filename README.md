@@ -118,6 +118,8 @@ I believe that the three charts clearly show that:
 - [ ] reasons for picking bar and line
 - [ ] length of delay and number of flights related?
 - [ ] mention where all data comes from, and that it's all for 2008
+- [ ] write about new design decision including, change in structure, focus on
+bars and dots, change in color palette, leave just one year
 
 ##### For the future:
 - [ ] add a dynamic grid table, with the ability to change the data for a given year

@@ -182,3 +182,32 @@ html.ie8 #ie8_percents, #ie8_percents.ff3 {
 .rbow2 .q11-11 {
 	background: #9E0142;
 }
+
+/* Another type of color palette */
+.rbow1 .q1-9 {
+	background:#f7fbff;
+}
+.rbow1 .q2-9 {
+	background:#deebf7;
+}
+.rbow1 .q3-9 {
+	background:#c6dbef;
+}
+.rbow1 .q4-9 {
+	background:#9ecae1;
+}
+.rbow1 .q5-9 {
+	background:#6baed6;
+}
+.rbow1 .q6-9 {
+	background:#4292c6;
+}
+.rbow1 .q7-9 {
+	background:#2171b5;
+}
+.rbow1 .q8-9 {
+	background:#08519c;
+}
+.rbow1 .q9-9 {
+	background:#08306b;
+}

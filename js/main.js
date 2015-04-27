@@ -1,8 +1,8 @@
 /*
-This graphic is inspired (and borrowed some code) from
-Trulias 247 visualization: trulia.com/vis/tru247/
+Flight Delay time visualization.
+Author: @sebasibarguen
 
-
+Built with D3.JS and Dimple.JS
 */
 
 var svgLine = dimple.newSvg("#chartContainer", 590, 400);
@@ -95,6 +95,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   lineX.titleShape.text("Month of Year");
   lineY.titleShape.text("Flight Delay in minutes");
 
+  // Change colors of months with higher average delay time than 40 minutes
   var lineFocus = d3.select("#chartContainer")
                    .selectAll("circle")
                    .attr("fill", function(d) {
@@ -106,13 +107,12 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
                           }
                      });
 
-   dots.getTooltipText = function (e) {
-                 return [
-                     "" + Math.round(e.y) + " min",
-                 ];
-             };
-
-
+  // Improve tooltip's content for line chart.
+ dots.getTooltipText = function (e) {
+               return [
+                   "" + Math.round(e.y) + " min",
+               ];
+           };
 
   // A nest operator, for grouping the flight list into the newly created
   // variable, TimeDay, which is basically a Day of Week (0-6) together with
@@ -139,10 +139,12 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   // Call the function to build the tiles.
   createTiles();
 
+  var colorPalette = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   // Calculate min-max to use with D3.js scale
   var min = d3.min(flights, function (d) { return d.DepDelay; });
   var max = d3.max(flights, function (d) { return d.DepDelay; });
-  var bucket = d3.scale.quantize().domain([15, 80]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+  var bucket = d3.scale.quantize().domain([15, 80]).range(colorPalette);
 
   // This loop assigns the CSS classes to each tile so as to assign it
   // an appropriate color based on the `bucket` scaling domain-range relation.
@@ -154,7 +156,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
     var color = bucket(delay);
 
     d3.select("#d" + f.DayOfWeek + "h" + f.Time + " .tile .front")
-        .classed('q' + color + '-11', true)
+        .classed('q' + color + '-' + colorPalette.length, true)
         .attr('delay', function(){ return delay })
         .attr('data-toggle', 'tooltip')
         .attr('title', '' + Math.round(delay));
