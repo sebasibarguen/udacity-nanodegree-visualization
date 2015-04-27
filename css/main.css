@@ -49,7 +49,7 @@ Styles guide for the flight visualizaiton.
 
 /* Highlight darker text color for highest
 delay time hours in Grid Visualization */
-th.head18, th.head19, th.head20 {
+th.head0, th.head1, th.head2, th.head3 {
 	color: #444 !important;
 }
 

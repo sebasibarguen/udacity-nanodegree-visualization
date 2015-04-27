@@ -126,8 +126,6 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   var max = d3.max(flights, function (d) { return d.DepDelay; });
   var bucket = d3.scale.quantize().domain([15, 80]).range([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
-  // debugger;
-
   // This loop assigns the CSS classes to each tile so as to assign it
   // an appropriate color based on the `bucket` scaling domain-range relation.
   for (var i=0; i < flights.length; i++) {
@@ -223,6 +221,19 @@ overview of the data. Max flight time, number of flights...
 
   x.titleShape.text("Hours of day (24 hour format)");
   y.titleShape.text("Flight Delay in minutes");
+
+  // Want to give special focus on hours which
+  // have highest delay time.
+  var barFocus = d3.select("#hourHistogram")
+                   .selectAll("rect")
+                   .attr("fill", function(d) {
+                        if (d.height > 40) {
+                            return "#D53E4F";
+                          }
+                        else {
+                          return "#3288BD";
+                          }
+                     });
 
   debugger;
 
