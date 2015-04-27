@@ -73,15 +73,29 @@ larger. So I implemented `process_data.py` script to take care of that.*
 ![Version 3](https://www.evernote.com/shard/s14/sh/a1ae0961-8fab-43f7-9598-a65499d063e4/f85453909fb4e653029eab0ac7d907af/deep/0/visualization_v3.png)
 
 
-### Final version
+### Version 4
 
-*For the third version, the biggest changes based on feedback were:*
+*For the fourth version, the biggest changes based on feedback were:*
 1. Fixed issue with some labels in first visualization being different sizes
 2. Updated the labels in legend
 3. Updated the x and y axis labels for both lower charts.
 
 ![Version 4](/img/visualization_v4.png)
 
+
+### Version 5
+*For the fifth version, there were some big changes based on Udacity coach feedback:*
+1. General improvement of main point, story and structure
+2. All charts are using same dataset for 2008 and using **average delay** time
+3. Changed hours on grid visualization to be consistent with other graph, 24 hour format
+4. Improved titles and subtitles
+5. In line chart, moved December after November
+6. Added tooltip to grid visualization and better explained color coding
+7. Added comments to HTML and CSS and explained commented out code.
+8. Added Pixelapse feedback (number 4)
+9.
+
+![Version 4](/img/visualization_v4.png)
 
 ### Final thoughts on design
 
@@ -99,31 +113,14 @@ I believe that the three charts clearly show that:
 * Over the year, the highest flight delays occur during **summer** and **end of year**
 
 #### Ideas for improvement
-With more time, I would of loved to:
-- [x] re-aggregate data to be consistent between charts. All should be averages.
-- [x] change hours to be consistent on both graphs, to 24 hour format
-- [x] add information to legend to make COLORs clear. Cold - Hot
-- [] make title and subtitle more specific. shorten and more precise.
-- [x] clarify what data is being used. just 2008
-- [x] move December after November
-- [x] ~~2008 after 2007~~
-- [] try out cycle plot for years graph
-- [] add tooltip to big plot
-- [] change DepDelay to a more understandable name in pop overs
-- [] reasons for picking bar and line
-- [x] add other feedback from Pixelapse
-- [] length of delay and number of flights related?
-- [x] add comments in `index.html` and `main.css`
-- [x] in main.js, explain commented out code or remove
-- [x] improve story
-  * start with a more relevant question to the average flyer. If you can't stand delays, what type should you book
-  your flight?
-  * This leads to natural questions of, what day of the week and month of the year are worst for delays?
-  * Do it just for 2008.
 
+- [ ] change DepDelay to a more understandable name in pop overs
+- [ ] reasons for picking bar and line
+- [ ] length of delay and number of flights related?
 
-- [] add a dynamic grid table, with the ability to change the data for a given year
-- [] add summary circle dashboard on top
+##### For the future:
+- [ ] add a dynamic grid table, with the ability to change the data for a given year
+- [ ] add summary circle dashboard on top
 
 ## Feedback
 To validate and review my visualizations, I conducted 4 interviews. Most were completed through email
@@ -153,7 +150,7 @@ I like the design of each graph. The content now gives a great sight into what e
 One change that might be good is to have an abbreviation of each month (jan, feb, etc...) instead of numbers for the graph Departure delay time (minutes) by month
 Overall, I see improvement with each version.
 
-### Fourth interview
+### Fourth interview (pixelapse)
 > When i opened the project, what i saw at first was the title about flight delays in US. Then i skip some information and start trying to understand what graphics are saying. I started with the colorful square based graphic. I understood pretty well it´s information. Then with the blue bars i didn’t understand quickly so i skip it. By this time i started to read a little bit more other texts than could help me to read the graphics. Then i watched the third chart where i started to ask if there are a pattern of this data year by year. I saw that each year this numbers increased. finally i returned to read the second chart that in this time was more easy to understand.
 Yes, after i read all information it was clear.
 In first place that the first and second chart are very related. and for conclusion that there is a big amount of time lost in some way and this phenomenon happens depending on the time, day or month.
