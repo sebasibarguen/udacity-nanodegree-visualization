@@ -79,9 +79,10 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
 
 
   // The nested operation gives back a list of objects that contain inside them
-  // a values object, which is actually what we want.
+  // a values object, which is what we actually want.
   for (var i = 0; i < flightsByMonth.length; i++){
     flightsByMonth[i] = flightsByMonth[i].values;
+    flightsByMonth[i].MonthName = monthMap[flightsByMonth[i].Month];
   }
 
 
@@ -143,7 +144,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   // Line chart
   var lineChart = new dimple.chart(svgLine, flightsByMonth);
   lineChart.setBounds(60, 30, 505, 305);
-  var lineX = lineChart.addCategoryAxis("x", "Month");
+  var lineX = lineChart.addCategoryAxis("x", "MonthName");
   lineX.addOrderRule(monthArray);
   var lineY = lineChart.addMeasureAxis("y", "DepDelay");
   lineChart.addSeries(null, dimple.plot.line);
@@ -196,7 +197,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
         .classed('q' + color + '-' + colorPalette.length, true)
         .attr('delay', function(){ return delay })
         .attr('data-toggle', 'tooltip')
-        .attr('title', '' + Math.round(delay));
+        .attr('title', Math.round(delay) + ' min');
   }
 
     $(function () {
@@ -205,6 +206,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
 
 
 /*
+TODO
 This part is commented out, trying to build another visualization that gives a
 overview of the data. Max flight time, number of flights...
 */

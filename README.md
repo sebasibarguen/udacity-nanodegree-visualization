@@ -11,22 +11,14 @@ does average delay time vary between months of the year?
 
 
 ### Bar Chart
-After exploring the data, trying out different chart types and getting feedback, the
-best way to communicate the main point was by a simple bar chart. The bar chart shows
-the average delay time for departing flights as seen by the hours of a day. It's a clear design choice
-because it easily helps compare the delay times by the size or height of the bar. Also given it's
-widespread usage, a viewer is already trained to interpreting these types of plots.
+After exploring the data, trying out different chart types, playing with the narrative and getting feedback, the best way to communicate the main point was by a simple bar chart. The bar chart shows the average delay time for departing flights as seen by the hours of a day. It's a clear design choice because it easily helps the viewer compare the delay times by the size or height of the bar. Also given it's widespread usage, a viewer is already trained to interpreting these types of plots.
 
 > The process of getting feedback was a good lesson on *less is more*, and to first
 and foremost, focus on the main message of the visualization.
 
-That's why I chose the bar chart over the more fancy grid visualization. The bar chart simply communicates the message faster and clearer.
+That's why I chose the bar chart over the more fancy grid visualization as the main focus. The bar chart simply communicates the message faster and clearer.
 
-Additional design choices around the bar chart were first
-to add focus to the hours with highest average delay times, which is the main point of
-the visualization. I accomplished this by changing the *color* of the bars of interest.
-Then, to improve the viewers interaction, I also fixed the *tooltip* message to just include the exact
-amount of minutes. Again, I found out that less is more, a cluttered tooltip hurts more than helps the viewer.
+Additional design choices around the bar chart were first to add focus to the hours with highest average delay times, which is the main point of the visualization. I accomplished this by changing the *color* of the bars of interest. Then, to improve the viewers interaction, I also fixed the *tooltip* message to just include the exact amount of minutes. Again, I found out that less is more, a cluttered tooltip hurts more than helps the viewer.
 
 
 | Visual encodings |        Variable |
@@ -36,10 +28,9 @@ amount of minutes. Again, I found out that less is more, a cluttered tooltip hur
 | color hue  | high/low average delay time |
 
 ### Line Chart
-The next chart to be explored is a line chart, which shows the average delay times by month of year. A line chart
-was chosen to present this data so as to show the time relationship month by month. After exploring multiple years, the month variations stays roughly the same, and so it appears to be seasonal. To give focus on this point, I decided to change the color of the months with highest value, which turns out to be February, June through August and December.
+The next chart to be explored is a line chart, which shows the average delay times by month of year. A line chart was chosen to present this data so as to show the time relationship month by month. After exploring multiple years, the month variations stays roughly the same, and so it appears to be seasonal. To give focus on the months with highest delay times, I decided to change the color of the months with highest value, which turns out to be February (not quite sure why), June through August (summer vacations) and December (holiday).
 
-| Visual encodings |        Variable |
+| Visual encodings | Variable |
 -------------------|------------------|
 | distance x | month of year |
 | distance y | average delay time |
@@ -47,31 +38,22 @@ was chosen to present this data so as to show the time relationship month by mon
 
 ### Grid Visualization
 For the grid visualization, I decided to use a calendar grid comparing how flight
-delays vary depending on the hour of day and day of week. The inspiration came from a [Trulia
-graph](http://www.trulia.com/vis/tru247/) depicting the time of day and day of week most people go house hunting. The idea
-behind the design is to use hue-colors as a way to communicate the amount of delay time,
-hotter colors representing longer delays while cooler colors shorter. The reasons for choosing
-the use of colors and a grid chart is that in just one graph we are able to group the relationship between
-three variables and make it aesthetically pleasing way. It permits us to look at relationships like:
-**what's the worst day-time of the week regarding flight time delays?** **Are time delays worst
-on early Tuesdays or late Fridays?** What I found out based on feedback is that this
-visualization is not so easy to digest, and the color coding is far from clear. To improve these concerns, I changed the color coding from multiple color-hues to different intensities of a single-hue. This definitely
+delays vary depending on the hour of day and day of week. The inspiration came from a [Trulia graph](http://www.trulia.com/vis/tru247/) depicting the time of day and day of week most people go house hunting. The idea behind the design is to use hue-colors as a way to communicate the amount of delay time, hotter colors representing longer delays while cooler colors shorter. The reasons for choosing the use of colors and a grid chart is that in just one graph we are able to group the relationship between
+three variables and make it aesthetically pleasing way. It permits us to look at relationships like: **what's the worst day-time of the week regarding flight time delays?** **Are time delays worst on early Tuesdays or late Fridays?** What I found out based on feedback is that this visualization is not so easy to digest, and the color coding is far from clear. To improve these concerns, I changed the color coding from multiple color-hues to different intensities of a single-hue. This definitely
 helped interpret the grid better, there is simply less room for the viewer to mis-understand.
 
 
-| Visual encodings for the grid visualization |
---------------------------------------
+| Visual encodings | Variable |
+--------------|------------------------|
 | distance x | hour of day |
 | distance y | day of week |
 | color hue  | flight delay time |
 
 
-The grid visualization confirms the message the bar charts first gives, and it also tells us something interesting,
-**there is not much difference in average delay times between days of week**.
+The grid visualization confirms the message the bar charts first gives, and it also tells us something interesting, **there is not much difference in average delay times between days of week**.
 
 ### Layout and Narrative
-The layout changed a lot based on the narrative of the visualization. You can appreciate this in the sketches below.
-The final layout was chosen because it was the one which best communicated the core message, which is that average flight delays are worst between 11pm and 3am, and December has the highest delay times of the year.
+The layout changed a lot based on the narrative of the visualization. You can appreciate this in the sketches below. The final layout was chosen because it was the one which best communicated the core message, which is that average flight delays are worst between 11pm and 3am, and December has the highest delay times of the year.
 
 #### Sketch
 ![Sketch](/img/visualization_sketch.JPG)
@@ -83,9 +65,7 @@ planning to use.*
 
 ![Version 1](https://www.evernote.com/shard/s14/sh/65887338-ebad-49cb-b477-5796b9a4dc5f/c357ef4e705f049fc6a01125aad99a53/deep/0/visualization_v1.png)
 
-*This first implementation took some time. The biggest problems where basically formatting
-the data so that the site uses an aggregate sample because the original files are* **600mb** *or
-larger. So I implemented `process_data.py` script to take care of that.*
+*This first implementation took some time. The biggest problems where basically formatting the data so that the site uses an aggregate sample because the original files are* **600mb** *or larger. So I implemented `process_data.py` script to take care of that.*
 
 #### Version 2
 
