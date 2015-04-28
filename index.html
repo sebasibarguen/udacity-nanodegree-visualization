@@ -25,9 +25,8 @@
         </h1>
         <p class="text-center lead">don't book flights between 11pm-3am</p>
         <p class="lead">
-          December clearly stands out as the month with longest average flight delays. So if
-          you happen to travel in December and you flight leaves between 11pm and 3am, be
-          <b>brace yourself</b> to wait around <em>1 hour</em>.
+          Using <a href="http://www.transtats.bts.gov/OT_Delay/OT_DelayCause1.asp">RITA flight delay information</a> for US domestic flights in 2008, below you can explore
+          the relationship between <b>average departure delay time</b> during different time periods.
         </p>
       </div>
     </div>
@@ -48,7 +47,25 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <h2 class="text-center">Average delays by hour of day <small>minutes</small></h2>
-        <div id="hourHistogram"></div>
+        <div id="hourBar"></div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p class="lead">
+          We can clearly perceive the higher time people wait on flights between 11pm and 3am.
+          This naturally leads us to think, is there a relationship for days of the week as well? After exploring the data a bit,
+          there seems to be no clear relationship, all days of the week seem practically identical. No chart
+          was included to show just this relationship. No useful information could be extracted, in the sense of:
+          if you wanted to avoid flight delays, you would have the same expected delay time any day of the week.
+          <small>In the grid visualization below, you can appreciate this fact.</small>
+        </p>
+        <p class="lead">
+          On the other hand, do delays vary between months of year?
+        </p>
       </div>
     </div>
 
@@ -83,18 +100,17 @@
 
         <h2 class="text-center">Average delay by <b>hour of day</b> and <b>day of week</b> <small>24/7</small></h2>
         <p class="lead">
-          The following grid shows how delays depected on the
-          horizontal axis hours of day, and on the vertical axis
-          days of the week. <b>Colder colors</b> (e.g. purple and blue)
-          in the grid represent <em>shorter</em> average delay times and <b>hotter
-          colors</b> (e.g. red and orange) represent <em>longer</em> delay times.
+          The horizontal axis are the hours of day, and on the vertical axis has the
+          days of the week. <b>Lighter blue</b> (e.g. almost white)
+          in the grid represent <em>shorter</em> average delay times <small>(from 15 minutes)</small> and <b>more intense
+          blue</b> (e.g. deep blue) represent <em>longer</em> delay times <small>(up to 75 minutes)</small>.
 
         </p>
 
         <table class="rbow1">
           <tr>
             <th colspan="5">
-              Legend: Color spectrum
+              Legend: Color intensity
             </th>
           </tr>
           <tr>
@@ -107,6 +123,8 @@
             <td class="q7-9 legend-tile"></td>
             <td class="q8-9 legend-tile"></td>
             <td class="q9-9 legend-tile"></td>
+            <!-- Depending on which color palette is used, these
+                 should be commented out -->
             <!-- <td class="q10-11 legend-tile"></td>
             <td class="q11-11 legend-tile"></td> -->
           </tr>

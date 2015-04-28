@@ -6,7 +6,7 @@ Built with D3.JS and Dimple.JS
 */
 
 var svgLine = dimple.newSvg("#chartContainer", 590, 400);
-var svgHist = dimple.newSvg("#hourHistogram", 590, 400);
+var svgHist = dimple.newSvg("#hourBar", 590, 400);
 
 var monthMap = {1:"Jan", 2:"Feb", 3:"March", 4:"Apr",
                 5:"May", 6:"June", 7:"July", 8:"Ago",
@@ -59,6 +59,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
     return true;
   });
 
+  // group data by month.
   var flightsByMonth = d3.nest()
                           .key(function(d) { return d.Month; })
                           .rollup(function(d) {
@@ -75,13 +76,71 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
                           })
                           .entries(flights);
 
+
+
   // The nested operation gives back a list of objects that contain inside them
   // a values object, which is actually what we want.
   for (var i = 0; i < flightsByMonth.length; i++){
     flightsByMonth[i] = flightsByMonth[i].values;
   }
 
-  // build the line chart
+
+  // A nest operator, for grouping the flight list into the newly created
+  // variable, TimeDay, which is basically a Day of Week (0-6) together with
+  // the hour of day (0-23).
+  var flights = d3.nest()
+                  .key(function(d) { return d.TimeDay; })
+                  .rollup(function(d) {
+                    var result = {
+                      "DepDelay": d3.mean(d, function(g) { return g.DepDelay;}),
+                      "Time": d3.mean(d, function(g) { return g.Time;}),
+                      "DayOfWeek": d3.mean(d, function(g) { return g.DayOfWeek;})
+                    };
+                    return result;
+                  })
+                  .entries(flights);
+
+
+  // The nested operation gives back a list of objects that contain inside them
+  // a values object, which is actually what we want.
+  for (var i = 0; i < flights.length; i++){
+    flights[i] = flights[i].values;
+  }
+
+
+  // Bar chart
+  var bar = new dimple.chart(svgHist, flights);
+  bar.setBounds(60, 30, 510, 305)
+  var x = bar.addCategoryAxis("x", "Time");
+  x.addOrderRule("Time");
+  var y = bar.addMeasureAxis("y", "DepDelay");
+  var s = bar.addSeries(null, dimple.plot.bar);
+  s.aggregate = dimple.aggregateMethod.avg;
+  bar.draw();
+
+  x.titleShape.text("Hours of day (24 hour format)");
+  y.titleShape.text("Flight Delay in minutes");
+
+  s.getTooltipText = function (e) {
+                return [
+                    "" + Math.round(e.y) + " min",
+                ];
+            };
+
+  // Want to give special focus on hours which
+  // have highest delay time.
+  var barFocus = d3.select("#hourBar")
+                   .selectAll("rect")
+                   .attr("fill", function(d) {
+                        if (d.height > 40) {
+                            return "#D53E4F";
+                          }
+                        else {
+                          return "#3288BD";
+                          }
+                     });
+
+  // Line chart
   var lineChart = new dimple.chart(svgLine, flightsByMonth);
   lineChart.setBounds(60, 30, 505, 305);
   var lineX = lineChart.addCategoryAxis("x", "Month");
@@ -113,28 +172,6 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
                    "" + Math.round(e.y) + " min",
                ];
            };
-
-  // A nest operator, for grouping the flight list into the newly created
-  // variable, TimeDay, which is basically a Day of Week (0-6) together with
-  // the hour of day (0-23).
-  var flights = d3.nest()
-                  .key(function(d) { return d.TimeDay; })
-                  .rollup(function(d) {
-                    var result = {
-                      "DepDelay": d3.mean(d, function(g) { return g.DepDelay;}),
-                      "Time": d3.mean(d, function(g) { return g.Time;}),
-                      "DayOfWeek": d3.mean(d, function(g) { return g.DayOfWeek;})
-                    };
-                    return result;
-                  })
-                  .entries(flights);
-
-
-  // The nested operation gives back a list of objects that contain inside them
-  // a values object, which is actually what we want.
-  for (var i = 0; i < flights.length; i++){
-    flights[i] = flights[i].values;
-  }
 
   // Call the function to build the tiles.
   createTiles();
@@ -218,40 +255,6 @@ overview of the data. Max flight time, number of flights...
   //       .attr("y", function(d, i) { return d.y; })
   //       .attr("x", function(d, i) { return d.x; })
   //       .attr("class", function(d) { return d.class; });
-
-
-
-  // Dimple histogram
-  var histogram = new dimple.chart(svgHist, flights);
-  histogram.setBounds(60, 30, 510, 305)
-  var x = histogram.addCategoryAxis("x", "Time");
-  x.addOrderRule("Time");
-  var y = histogram.addMeasureAxis("y", "DepDelay");
-  var s = histogram.addSeries(null, dimple.plot.bar);
-  s.aggregate = dimple.aggregateMethod.avg;
-  histogram.draw();
-
-  x.titleShape.text("Hours of day (24 hour format)");
-  y.titleShape.text("Flight Delay in minutes");
-
-  s.getTooltipText = function (e) {
-                return [
-                    "" + Math.round(e.y) + " min",
-                ];
-            };
-
-  // Want to give special focus on hours which
-  // have highest delay time.
-  var barFocus = d3.select("#hourHistogram")
-                   .selectAll("rect")
-                   .attr("fill", function(d) {
-                        if (d.height > 40) {
-                            return "#D53E4F";
-                          }
-                        else {
-                          return "#3288BD";
-                          }
-                     });
 
 });
 
