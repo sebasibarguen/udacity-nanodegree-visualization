@@ -144,16 +144,8 @@ I believe that the three charts clearly show that:
 * **7pm** is the hour of the day with highest flight delays on average
 * Over the year, the highest flight delays occur during **summer** and **end of year**
 
-## Ideas for improvement
 
-- [x] change DepDelay to a more understandable name in pop overs
-- [x] reasons for picking bar and line
-- [ ] length of delay and number of flights related?
-- [x] mention where all data comes from, and that it's all for 2008
-- [x] write about new design decision including, change in structure, focus on
-bars and dots, change in color palette, leave just one year
-
-##### For the future:
+## For the future:
 - [ ] add a dynamic grid table, with the ability to change the data for a given year
 - [ ] add summary circle dashboard on top
 

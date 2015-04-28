@@ -72,7 +72,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
                                 }
                                 }),
                               DepDelay: d3.mean(d, function(g) { return g.DepDelay; })
-                              };
+                            }
                           })
                           .entries(flights);
 
