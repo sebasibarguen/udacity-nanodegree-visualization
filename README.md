@@ -4,7 +4,7 @@
 
 By looking at the [Rita flight dataset](http://stat-computing.org/dataexpo/2009/the-data.html) for 2008, this visualization explores the relationship between **average flight departure delay time** and the hour of day. This also leads us to explore the relationship between delay time and other periods of time, like day of week and months of the year.
 
-I suggest you first [View the visualization](http://sebasibarguen.github.io/udacity-nanodegree-visualization/), and then read the full design process.
+I suggest you first [view the visualization](http://sebasibarguen.github.io/udacity-nanodegree-visualization/), and then read the full design process.
 
 ## Design
 
@@ -73,17 +73,17 @@ The layout changed a lot based on the narrative of the visualization. You can ap
 
 ![Version 2](https://www.evernote.com/shard/s14/sh/a1ae0961-8fab-43f7-9598-a65499d063e4/f85453909fb4e653029eab0ac7d907af/deep/0/visualization_v2.png)
 
-*For the second version, the biggest changes based on feedback were:*
+*For the second version, the biggest changes based on feedback were*:
+
 1. Include a legend for the first graph, the message was not clear.
 2. Add chart titles
 3. Fixed an issue with the bar chart including NaN values
 4. Removed non-existing 2009 data from line chart
 
-
-
 #### Version 3
 
-*For the fourth version, the biggest changes based on feedback were:*
+*For the third version, the biggest changes based on feedback were*:
+
 1. Fixed issue with some labels in first visualization being different sizes
 2. Updated the labels in legend
 3. Updated the x and y axis labels for both lower charts.
@@ -92,7 +92,8 @@ The layout changed a lot based on the narrative of the visualization. You can ap
 
 
 #### Version 4
-*For the fifth version, there were some big changes based on Udacity coach feedback:*
+*For the fourth version, there were some big changes based on Udacity coach feedback*:
+
 1. General improvement of main point, story and structure
 2. All charts are using same dataset for 2008 and using **average delay** time
 3. Changed hours on grid visualization to be consistent with other graph, 24 hour format
@@ -165,6 +166,7 @@ No, after i read all information it was clear. It took me like 10min watching al
 It would be better to show the average delay per flight​. (Don’t forget to look carefully at which average would be best for this - would a mean or a median be more appropriate?) This would make the graphic easier to relate to a real-life situation. It also disentangles the effect of the number of flights at a given time (hour/day of week/month of year) from the lengths of the delays at that time. This could lead to an interesting investigation of whether delays occur more often at busy times of day. Depending on your findings, this could make a more compelling story.
 
 ## For the future:
+
 - [ ] add a dynamic grid table, with the ability to change the data for a given year
 - [ ] add summary circle dashboard on top
 
