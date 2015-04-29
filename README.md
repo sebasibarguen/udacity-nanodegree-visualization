@@ -2,10 +2,9 @@
 
 ## Summary
 
-By looking at the [Rita Flight dataset](http://stat-computing.org/dataexpo/2009/the-data.html), this visualization explores the relationship between **average flight departure delay time** and time of the day. This question leads us to ask,
-does average delay time vary between months of the year?
+By looking at the [Rita flight dataset](http://stat-computing.org/dataexpo/2009/the-data.html) for 2008, this visualization explores the relationship between **average flight departure delay time** and the hour of day. This also leads us to explore the relationship between delay time and other periods of time, like day of week and months of the year.
 
-[View the visualization](http://sebasibarguen.github.io/udacity-nanodegree-visualization/)
+I suggest you first [View the visualization](http://sebasibarguen.github.io/udacity-nanodegree-visualization/), and then read the full design process.
 
 ## Design
 
@@ -16,7 +15,7 @@ After exploring the data, trying out different chart types, playing with the nar
 > The process of getting feedback was a good lesson on *less is more*, and to first
 and foremost, focus on the main message of the visualization.
 
-That's why I chose the bar chart over the more fancy grid visualization as the main focus. The bar chart simply communicates the message faster and clearer.
+That's why I chose the bar chart over the more fancy grid visualization as the main plot. The bar chart simply communicates the message faster and clearer.
 
 Additional design choices around the bar chart were first to add focus to the hours with highest average delay times, which is the main point of the visualization. I accomplished this by changing the *color* of the bars of interest. Then, to improve the viewers interaction, I also fixed the *tooltip* message to just include the exact amount of minutes. Again, I found out that less is more, a cluttered tooltip hurts more than helps the viewer.
 
@@ -27,20 +26,12 @@ Additional design choices around the bar chart were first to add focus to the ho
 | distance y | average delay time |
 | color hue  | high/low average delay time |
 
-### Line Chart
-The next chart to be explored is a line chart, which shows the average delay times by month of year. A line chart was chosen to present this data so as to show the time relationship month by month. After exploring multiple years, the month variations stays roughly the same, and so it appears to be seasonal. To give focus on the months with highest delay times, I decided to change the color of the months with highest value, which turns out to be February (not quite sure why), June through August (summer vacations) and December (holiday).
-
-| Visual encodings | Variable |
--------------------|------------------|
-| distance x | month of year |
-| distance y | average delay time |
-| color hue  | high/low average delay time |
 
 ### Grid Visualization
+After the viewer get's a feel of the delay time between hours of the day, a next natural step is to present them with the grid visualization which combines the bar chart variables and adds another, days of the week.
+
 For the grid visualization, I decided to use a calendar grid comparing how flight
-delays vary depending on the hour of day and day of week. The inspiration came from a [Trulia graph](http://www.trulia.com/vis/tru247/) depicting the time of day and day of week most people go house hunting. The idea behind the design is to use hue-colors as a way to communicate the amount of delay time, hotter colors representing longer delays while cooler colors shorter. The reasons for choosing the use of colors and a grid chart is that in just one graph we are able to group the relationship between
-three variables and make it aesthetically pleasing way. It permits us to look at relationships like: **what's the worst day-time of the week regarding flight time delays?** **Are time delays worst on early Tuesdays or late Fridays?** What I found out based on feedback is that this visualization is not so easy to digest, and the color coding is far from clear. To improve these concerns, I changed the color coding from multiple color-hues to different intensities of a single-hue. This definitely
-helped interpret the grid better, there is simply less room for the viewer to mis-understand.
+delays vary depending on the hour of day and day of week. The inspiration came from a [Trulia graph](http://www.trulia.com/vis/tru247/) depicting the time of day and day of week most people go house hunting. The idea behind the design is to use hue-colors as a way to communicate the amount of delay time, hotter colors representing longer delays while cooler colors shorter. The reasons for choosing the use of colors and a grid chart is that in just one graph we are able to group the relationship between  three variables and make it aesthetically pleasing way. It permits us to look at relationships like: **what's the worst day-time of the week regarding flight time delays?** **Are time delays worst on early Tuesdays or late Fridays?** What I found out based on feedback is that this visualization is not so easy to digest, and the color coding is far from clear. To improve these concerns, I **changed the color coding from multiple color-hues to different intensities of a single-hue**. This definitely helped interpret the grid better, there is simply less room for the viewer to mis-understand. Also, the tooltip is a really **helpful interaction** for the same reason, the user can explore the data much more freely and get concrete values instead of guessing what the 3'rd level of color intensity means.
 
 
 | Visual encodings | Variable |
@@ -50,16 +41,27 @@ helped interpret the grid better, there is simply less room for the viewer to mi
 | color hue  | flight delay time |
 
 
-The grid visualization confirms the message the bar charts first gives, and it also tells us something interesting, **there is not much difference in average delay times between days of week**.
+The grid visualization confirms the message the bar charts first gives, and it also tells us something interesting:
+
+> there is not much difference in average delay times between days of week
+
+
+### Line Chart
+The next chart to be explored is a line chart, which shows the average delay times by month of year. A line chart was chosen to present this data so as to show the time relationship month by month. After exploring multiple years, the month variations stays roughly the same, and so it appears to be seasonal. To give focus on the months with highest delay times, I decided to change the color of the months with highest value, which turns out to be February (not quite sure why), June through August (summer vacations) and December (holiday).
+
+| Visual encodings | Variable |
+-------------------|------------------|
+| distance x | month of year |
+| distance y | average delay time |
+| color hue  | high/low average delay time |
 
 ### Layout and Narrative
-The layout changed a lot based on the narrative of the visualization. You can appreciate this in the sketches below. The final layout was chosen because it was the one which best communicated the core message, which is that average flight delays are worst between 11pm and 3am, and December has the highest delay times of the year.
+The layout changed a lot based on the narrative of the visualization. You can appreciate this in the sketches below. The final layout was chosen because it was the one which best communicated the core message. I chose an *author driven* approach to explore the visualization and tried to follow a natural flow of curiosity and practicality (usefulness) of the information. By these principles, the bar chart came as clear first pick to present the most information in a fast and clear manner.
 
 #### Sketch
 ![Sketch](/img/visualization_sketch.JPG)
 
-*This is the first sketch I did to get an overview idea of the visualizations I was
-planning to use.*
+*This is the first sketch I did to get an overview idea of the visualizations I was planning to use.*
 
 #### Version 1
 
@@ -69,22 +71,17 @@ planning to use.*
 
 #### Version 2
 
-![Version 2](https://www.evernote.com/shard/s14/sh/716fa520-b722-469a-bcfc-aacee3dfb4cc/682335413c42244825d66a7ceb6d3318/deep/0/visualization_v2.png)
+![Version 2](https://www.evernote.com/shard/s14/sh/a1ae0961-8fab-43f7-9598-a65499d063e4/f85453909fb4e653029eab0ac7d907af/deep/0/visualization_v2.png)
 
 *For the second version, the biggest changes based on feedback were:*
 1. Include a legend for the first graph, the message was not clear.
-2. Add chart titles and
+2. Add chart titles
+3. Fixed an issue with the bar chart including NaN values
+4. Removed non-existing 2009 data from line chart
+
+
 
 #### Version 3
-
-*For the third version, the biggest changes based on feedback were:*
-1. Fixed an issue with the bar chart including NaN values
-2. Removed non-existing 2009 data from line chart
-
-![Version 3](https://www.evernote.com/shard/s14/sh/a1ae0961-8fab-43f7-9598-a65499d063e4/f85453909fb4e653029eab0ac7d907af/deep/0/visualization_v3.png)
-
-
-#### Version 4
 
 *For the fourth version, the biggest changes based on feedback were:*
 1. Fixed issue with some labels in first visualization being different sizes
@@ -94,7 +91,7 @@ planning to use.*
 ![Version 4](/img/visualization_v4.png)
 
 
-#### Version 5
+#### Version 4
 *For the fifth version, there were some big changes based on Udacity coach feedback:*
 1. General improvement of main point, story and structure
 2. All charts are using same dataset for 2008 and using **average delay** time
@@ -108,30 +105,27 @@ planning to use.*
 10. Changed color palette of grid visualization
 
 ![Version 5](/img/visualization_v5.png)
+![Version 5](/img/visualization_v5_2.png)
 
 ### Final thoughts on design
 
-After hearing the feedback and thinking about the message, I believe that these three
-graphs are the right design choices.
+After hearing the feedback and thinking about the message, I believe that these three graphs are the right design choices.
 
-Complementing the 24/7 grid graph with the bar chart helps clarify the message. The
-feedback helped with important details like fixing bugs, clarifying the graphs with
-titles, labels and legends, and making sure that all three graphs are consistent and
-give complement each other.
+Getting good feedback is king! It is the only way to validate that the visualization is accomplishing it's purpose and communicating the message as intended. A good communication principle tells us that the message that really matters is the one being received by the viewer in this case, not the one we believe we are sending.
 
-I believe that the three charts clearly show that:
-* The worst flight delays tend to happen on **Mondays, Thursdays and Sundays around 7pm**
-* **7pm** is the hour of the day with highest flight delays on average
-* Over the year, the highest flight delays occur during **summer** and **end of year**
+> After multiple iterations, I found out that keeping focus on the main point and checking if the feedback was consistent with the objective is what design is all about.
 
+To that point, the bar chart is the one that most clearly communicates the message. After the viewer 'gets' educated by the first graph, we can take them to a more elaborate plot, the grid visualization. Finally, complementing the message we present the line plot to finish the delay-time period exploration.
 
-## For the future:
-- [ ] add a dynamic grid table, with the ability to change the data for a given year
-- [ ] add summary circle dashboard on top
+I believe that the three charts clearly show:
+* The worst flight delays tend to happen between **11pm and 3am**
+* **December holidays** and **summer** have a huge peak in flight delays
+* There is not much difference between days of the week
+
+*An important note, in the descriptions used in the visualization, people seem to prefer the 12-hour clock format, even though the plots use a 24-hour clock format. This inconsistency is quite interesting. I suspect it's due to the fact that when reading we are trained to rapidly interpret the 12-hour format, we are more accustomed to it. But when analyzing a graph, we might prefer an increasing axis labels, as we expect that from plots. It appears that there are two different expectations for the clock format depending on **context**.*
 
 ## Feedback
-To validate and review my visualizations, I conducted 4 interviews. Most were completed through email
-and one using [Pixelapse](pixelapse.com). Below you can find the comments.
+To validate and review my visualizations, I conducted 4 interviews. Most were completed through email and one using [Pixelapse](pixelapse.com). Below you can find the comments. I also included part of the Udacity coach's feedback.
 
 ### First interview
 > What do the colors of the first graphic mean?
@@ -165,6 +159,14 @@ The question i had was that if this situation is getting better or worse thru ti
 between the first and second chart.
 I didn’t understand why in the first chart the hour 1a is bigger than the others.
 No, after i read all information it was clear. It took me like 10min watching all the information in my phone.
+
+###  Udacity coach
+>You should work further on the data and your use of it in order to make a visualization that is easy to understand. The way that delays have been aggregated in each of the three plots seems to be different and in each case it is difficult to interpret. The note stating the aggregation (above the legend) is very small and hard to read. It is not very easy to understand what 12,000 minutes of delays means in practice. It is currently not possible to understand whether large total delays are caused by long delays or simply many flights in total.
+It would be better to show the average delay per flight​. (Don’t forget to look carefully at which average would be best for this - would a mean or a median be more appropriate?) This would make the graphic easier to relate to a real-life situation. It also disentangles the effect of the number of flights at a given time (hour/day of week/month of year) from the lengths of the delays at that time. This could lead to an interesting investigation of whether delays occur more often at busy times of day. Depending on your findings, this could make a more compelling story.
+
+## For the future:
+- [ ] add a dynamic grid table, with the ability to change the data for a given year
+- [ ] add summary circle dashboard on top
 
 ## Resources
 

@@ -119,8 +119,8 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   s.aggregate = dimple.aggregateMethod.avg;
   bar.draw();
 
-  x.titleShape.text("Hours of day (24 hour format)");
-  y.titleShape.text("Flight Delay in minutes");
+  x.titleShape.text("By hour of day (24-hour clock)");
+  y.titleShape.text("Average departure delay time (minutes)");
 
   s.getTooltipText = function (e) {
                 return [
@@ -153,7 +153,7 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
   lineChart.draw();
 
   lineX.titleShape.text("Month of Year");
-  lineY.titleShape.text("Flight Delay in minutes");
+  lineY.titleShape.text("Average departure delay time (minutes)");
 
   // Change colors of months with higher average delay time than 40 minutes
   var lineFocus = d3.select("#chartContainer")
@@ -240,7 +240,7 @@ overview of the data. Max flight time, number of flights...
   //        .attr("class", function(d) { return d.class; })
   //        .attr("fill-opacity", 0.80);
   //
-  // // debugger;
+  //
   // var labelData = [
   //   {"y": cy - 20, "x": minR + 25, "class": "summary-labels", "text": "Min"},
   //   {"y": cy - 20, "x": maxR*2 + 25, "class": "summary-labels", "text": "Max"},
@@ -263,7 +263,7 @@ overview of the data. Max flight time, number of flights...
 
 /* **************************
 * Took this function from the Trulia Graphic.
-* It creates the HTML for the first visualization. Builds the grid via an
+* It creates the HTML for the grid visualization. Builds the grid via an
 * HTML table, with each cell representing a tile of hour-day of week.
 */
 
