@@ -194,15 +194,14 @@ d3.csv("data/2008-DateTime.csv", function(error, flights) {
 
   barCount.draw();
 
-  //
-  // xCount.titleShape.text("By hour of day (24-hour clock)");
-  // yCount.titleShape.text("Number of flights");
-  //
-  // sCount.getTooltipText = function (e) {
-  //              return [
-  //                  "" + Math.round(e.y) + " min",
-  //              ];
-  //          };
+  xCount.titleShape.text("By hour of day (24-hour clock)");
+  yCount.titleShape.text("Volume of flights");
+
+  sCount.getTooltipText = function (e) {
+               return [
+                   "" + Math.round(e.y) + " flights",
+               ];
+           };
 
   // Want to give special focus on hours which
   // have highest delay time.

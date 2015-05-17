@@ -25,13 +25,16 @@
         </h1>
         <p class="text-center lead">don't book flights between 11pm-3am</p>
         <p class="lead">
-          The average delay between US domestic flights is <b>9 minutes</b>. What if I told you that
-          depending on your decision, you can expect to wait 2 hours or depart early?
-        </p>
-        <p class="lead">
           Using <a href="http://www.transtats.bts.gov/OT_Delay/OT_DelayCause1.asp">RITA flight delay information</a> for US domestic flights in 2008, below you can explore
           the relationship between <b>average departure delay time</b> during different time periods.
         </p>
+        <p class="lead">
+          The average flight delay between US domestic flights is <b>9 minutes</b>. This simple average calculation can be quite
+          deceiving.
+        </p>
+        <blockquote class="">
+          <p>What if I told you that depending on a choice that you have, you can expect to wait 2 hours or even depart early?</p>
+        </blockquote>
       </div>
     </div>
     <!-- end of row -->
@@ -58,32 +61,23 @@
         </div>
       </div>
 
-      <hr>
+      <br>
 
       <div class="row">
         <div class="col-md-12">
           <br>
           <p class="lead">
             Clearly passangers wait longer on flights <em>scheduled</em> to depart from 11pm to 3am. This graph provides
-            a quick overview of the potentially best times to fly during any day of the week. More <b>time conscious
-            passangers</b> may wish to study the following grid.
+            a quick overview of the potentially best times to fly during any day of the week.
           </p>
-          <br>
+          <p class="lead">
+            <em>Here comes the interesting part...</em>
+          </p>
         </div>
       </div>
     </section>
 
-    <br>
-
-    <section class="fill">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <h2 class="text-center lead">Here comes the interesting part</h2>
-        </div>
-      </div>
-    </section>
-
-    <br>
+    <hr>
 
     <section class="fill">
 
@@ -95,23 +89,26 @@
         </div>
       </div>
 
-      <hr>
+      <br>
 
       <div class="row">
         <div class="col-md-12">
           <br>
           <p class="lead">
-            Surprisingly, average flight delays appear to be inversely related to the amount
-            of flights. In other words, <b>hours with the highest number of flights also have
-            the lowest average delay times</b>. There seems to be one exception though, at 4am,
-            there is a relatively high volume of flights and a low average weight time.
+            Surprisingly, average flight delays appear to be inversely related to the volume
+            of flights happening in a given hour. In other words, <b>hours with the highest number of flights also have
+            the lowest average delay times</b>. There seems to be one exception though, at 4am
+            there is a relatively low volume of flights and a low average delay time.
+          </p>
+          <p class="lead">
+            <em>Are there similar patterns if we look at flights by day of week?</em>
           </p>
           <br>
         </div>
       </div>
     </section>
 
-
+    <hr>
 
     <!--
     Grid visualization. Depicts three features, departure delays on day of week vs hour of day.
@@ -121,13 +118,6 @@
       <div class="col-md-12">
 
         <h2 class="text-center">Average delay by <b>hour of day</b> and <b>day of week</b> <small>24/7</small></h2>
-        <p class="">
-          The horizontal axis represents the hour of day, and the vertical axis the
-          days of the week. A <em>lighter blue</em> (e.g. almost white) cell
-          in the grid represent <em>shorter</em> average delay times <small>(from 15 minutes)</small> and <em>more intense
-          blue</em> (e.g. deep blue) represent <em>longer</em> delay times <small>(up to 75 minutes)</small>.
-
-        </p>
 
         <table class="rbow1">
           <tr>
@@ -166,24 +156,38 @@
 
     <!-- Grid visualization -->
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-10">
 
         <div id="visualization" class="rbow1">
         </div>
 
       </div>
+      <div class="col-md-2">
+        <p class="">
+          The horizontal axis represents the hour of day, and the vertical axis the
+          days of the week. A <em>lighter blue</em> (e.g. almost white) cell
+          in the grid represent <em>shorter</em> average delay times <small>(from 15 minutes)</small> and <em>more intense
+          blue</em> (e.g. deep blue) represent <em>longer</em> delay times <small>(up to 75 minutes)</small>.
+
+        </p>
+      </div>
     </div>
     <!-- end of row -->
 
-    <hr>
+    <br>
 
     <div class="row">
       <div class="col-md-12">
         <br>
         <p class="lead">
+          <em>Not really.</em>
+        </p>
+        <p class="lead">
           Like the bar chart, here we can see that the highest average delays seem to happen between 12am-3am.
           <em>There seems to be no significant difference in delays between days of week.</em>
-          So the next question would be: <b>do some months have longer average delays than others?</b>
+        </p>
+        <p class="lead">
+          <em>What about months of the year?</em>
         </p>
         <br>
       </div>
@@ -205,7 +209,14 @@
       <div class="col-md-12">
         <br>
         <p class="lead">
-          December clearly stands out as the month with longest average flight delay, over <b>17 minutes</b>.
+          December clearly stands out as the month with longest average flight delay,
+          over <b>17 minutes</b>. But the difference between the best and worst months
+          is just <b>13 minutes</b>, while the difference between the best and worst hour of day
+          is a staggaring <b>130 minutes</b> <small>(at 5am there is negative time delay)</small>.
+        </p>
+        <p class="lead">
+          <em>So it seems a prudent advice for the time conscious travelers to book
+          flights between 4am and 12pm'ish'.</em>
         </p>
         <br>
       </div>
