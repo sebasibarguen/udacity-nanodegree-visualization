@@ -25,6 +25,10 @@
         </h1>
         <p class="text-center lead">don't book flights between 11pm-3am</p>
         <p class="lead">
+          The average delay between US domestic flights is <b>9 minutes</b>. What if I told you that
+          depending on your decision, you can expect to wait 2 hours or depart early?
+        </p>
+        <p class="lead">
           Using <a href="http://www.transtats.bts.gov/OT_Delay/OT_DelayCause1.asp">RITA flight delay information</a> for US domestic flights in 2008, below you can explore
           the relationship between <b>average departure delay time</b> during different time periods.
         </p>
@@ -44,29 +48,70 @@
 
     <br>
 
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h2 class="text-center">Average flight delays by hour of day <small>(minutes)</small></h2>
-        <div id="hourBar"></div>
-        <p><small>*Note: Red bars indicate delays of more than 40 minutes.</small></p>
+    <section class="fill">
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h2 class="text-center">Average flight delays by hour of day <small>(minutes)</small></h2>
+          <div id="hourBar"></div>
+          <p><small>*Note: Red bars indicate delays of more than 40 minutes.</small></p>
+        </div>
       </div>
-    </div>
 
-    <hr>
+      <hr>
 
-    <div class="row">
-      <div class="col-md-12">
-        <br>
-        <p class="lead">
-          Clearly passangers wait longer on flights <em>scheduled</em> to depart from 11pm to 3am. This graph provides
-          a quick overview of the potentially best times to fly during any day of the week. More <b>time conscious
-          passangers</b> may wish to study the following grid.
-        </p>
-        <br>
+      <div class="row">
+        <div class="col-md-12">
+          <br>
+          <p class="lead">
+            Clearly passangers wait longer on flights <em>scheduled</em> to depart from 11pm to 3am. This graph provides
+            a quick overview of the potentially best times to fly during any day of the week. More <b>time conscious
+            passangers</b> may wish to study the following grid.
+          </p>
+          <br>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <hr>
+    <br>
+
+    <section class="fill">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h2 class="text-center lead">Here comes the interesting part</h2>
+        </div>
+      </div>
+    </section>
+
+    <br>
+
+    <section class="fill">
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h2 class="text-center">Number of flights by hour of day</h2>
+          <div id="hourNumberOfFlights"></div>
+          <p><small>*Note: Red bars indicate number of flights less than 50,000.</small></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-md-12">
+          <br>
+          <p class="lead">
+            Surprisingly, average flight delays appear to be inversely related to the amount
+            of flights. In other words, <b>hours with the highest number of flights also have
+            the lowest average delay times</b>. There seems to be one exception though, at 4am,
+            there is a relatively high volume of flights and a low average weight time.
+          </p>
+          <br>
+        </div>
+      </div>
+    </section>
+
+
 
     <!--
     Grid visualization. Depicts three features, departure delays on day of week vs hour of day.
@@ -150,7 +195,7 @@
       <div class="col-md-8 col-md-offset-2">
         <h2 class="text-center">Average flight delays by month <small>(minutes)</small></h2>
         <div id="chartContainer"></div>
-        <p><small>*Note: Red dots indicate delays of more than 40 minutes.</small></p>
+        <p><small>*Note: Red dots indicate delays of more than 9 minutes (the average)</small></p>
       </div>
     </div>
 
@@ -160,8 +205,7 @@
       <div class="col-md-12">
         <br>
         <p class="lead">
-          December clearly stands out as the month with longest average flight delay, over <b>64 minutes</b>. So if
-          you happen to travel in December and you flight leaves between 11pm and 3am, expect to wait around <em>1 hour</em>.
+          December clearly stands out as the month with longest average flight delay, over <b>17 minutes</b>.
         </p>
         <br>
       </div>

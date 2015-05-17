@@ -22,7 +22,7 @@ def hours(t):
     try:
         t = float(t)
     except:
-        return -1
+        return np.nan
 
     t = str(t).split(".")[0]
     if len(t) == 3:
@@ -48,7 +48,11 @@ def group_data_by(group=["Date"]):
         data["Time"] = data["DepTime"].map(hours)
         data["DateTime"] = np_concat(data["Year"], data["Month"], data["DayofMonth"], data["Time"])
 
-        grouped_data = data.groupby(group).mean()
+
+        grouped_data = data.groupby(group)
+        transformed = grouped_data.transform('count')
+        summed = transformed.mean()
+
         grouped_list.append(grouped_data)
 
     # To append all years into a single DT
@@ -61,3 +65,18 @@ def group_data_by(group=["Date"]):
     all_data.to_csv("data/2008-{0}.csv".format(group[0]))
 
 group_data_by(group=[ "DateTime"])
+
+
+
+
+def hours(t):
+    try:
+        t = float(t)
+    except:
+        return np.nan
+
+    t = str(t).split(".")[0]
+    if len(t) == 3:
+        return t[:1]
+    else:
+        return t[:2]

@@ -1,0 +1,26 @@
+---
+title: "Flight Data Processing"
+author: "Sebastian Ibarguen"
+date: "May 17, 2015"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+data = read.csv("data/original/2008.csv")
+
+hour = function(x) { return( substr(x, 0, nchar(x)-2)); }
+data["Time"] = lapply(hour, data["DepTime"])
+
+library(dyplr)
+data = mutate(data, DateTime = paste(Year, Month, DayofMonth, Time, sep="-"))
+
+grouped = group_by(data, DateTime)
+
+summed = summarise(grouped,count=n(), DepDelay=mean(DepDelay))
+```
+
+
