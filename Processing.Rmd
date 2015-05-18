@@ -17,10 +17,9 @@ data["Time"] = lapply(hour, data["DepTime"])
 
 library(dyplr)
 data = mutate(data, DateTime = paste(Year, Month, DayofMonth, Time, sep="-"))
-
 grouped = group_by(data, DateTime)
-
-summed = summarise(grouped,count=n(), DepDelay=mean(DepDelay))
+summed = summarise(grouped,count=n(), DepDelay=mean(DepDelay, na.rm=TRUE))
+write.csv(summed, "data/2008-DateTime.csv")
 ```
 
 

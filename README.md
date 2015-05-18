@@ -9,13 +9,14 @@ I suggest you first [view the visualization](http://sebasibarguen.github.io/udac
 ## Design
 
 
-### Bar Chart
+### Bar Charts
 After exploring the data, trying out different chart types, playing with the narrative and getting feedback, the best way to communicate the main point was by a simple bar chart. The bar chart shows the average delay time for departing flights as seen by the hours of a day. It's a clear design choice because it easily helps the viewer compare the delay times by the size or height of the bar. Also given it's widespread usage, a viewer is already trained to interpreting these types of plots.
 
 > The process of getting feedback was a good lesson on *less is more*, and to first
 and foremost, focus on the main message of the visualization.
 
-That's why I chose the bar chart over the more fancy grid visualization as the main plot. The bar chart simply communicates the message faster and clearer.
+That's why I chose the bar chart over the more fancy grid visualization as the main plot. The bar chart simply communicates the message faster and clearer. Also, after discovering the curious relationship between flight volume and delay time, I explored other charts like: scatter plot of flight count and delay time and more complex scatter plots using size and colors
+to add the hour variable. All of these did not add much to the main point, they actually seemed to take away attention from the key point and made users take much more time to understand. So I decided to keep the two bar graphs, one for average flight delays by hour of day, this one as mentioned before is the most important one because it gives the reader an actionable metric he can use to make a decision of choosing flight schedules. To complement and to explain this, I then present the volume flight plot.
 
 Additional design choices around the bar chart were first to add focus to the hours with highest average delay times, which is the main point of the visualization. I accomplished this by changing the *color* of the bars of interest. Then, to improve the viewers interaction, I also fixed the *tooltip* message to just include the exact amount of minutes. Again, I found out that less is more, a cluttered tooltip hurts more than helps the viewer.
 
@@ -25,6 +26,9 @@ Additional design choices around the bar chart were first to add focus to the ho
 | distance x | hour of day |
 | distance y | average delay time |
 | color hue  | high/low average delay time |
+
+The same points apply to volumes of flights bar chart. Keeping both of them the same chart type helps
+the viewer better see the relationship between both variables.
 
 
 ### Grid Visualization
@@ -57,6 +61,8 @@ The next chart to be explored is a line chart, which shows the average delay tim
 
 ### Layout and Narrative
 The layout changed a lot based on the narrative of the visualization. You can appreciate this in the sketches below. The final layout was chosen because it was the one which best communicated the core message. I chose an *author driven* approach to explore the visualization and tried to follow a natural flow of curiosity and practicality (usefulness) of the information. By these principles, the bar chart came as clear first pick to present the most information in a fast and clear manner.
+
+I also decided to keep all graphs because I believe that each one gives an important piece of advice. Even though the most clear one is the hour of day plot, the grid visualization also tells us that it does not matter which day of week you travel, delay time stays roughly the same. The month graph also gives us an idea of the seasonality of flights and maybe a hint of delay dependent on weather as well.
 
 #### Sketch
 ![Sketch](/img/visualization_sketch.JPG)
@@ -107,6 +113,16 @@ The layout changed a lot based on the narrative of the visualization. You can ap
 
 ![Version 5](/img/visualization_v5.png)
 ![Version 5](/img/visualization_v5_2.png)
+
+#### Final Version
+*For the final version, a new graph was added and narrative improved*:
+
+1. Fixed issue of average of averages by always doing a weighted average.
+2. Added new chart depicting volumes of flights
+3. Improved narrative of visualization.
+
+
+[Visualization](http://sebasibarguen.github.io/udacity-nanodegree-visualization/)
 
 ### Final thoughts on design
 
@@ -177,9 +193,9 @@ It would be better to show the average delay per flight​. (Don’t forget to l
 - [Dimple.JS Documentation](http://dimplejs.org/)
 - [Bootstrap for styling](http://getbootstrap.com)
 
-## Files
+## Files and notes
 
-- To process the original RITA files, I built the `process_data.py` script.
+- To process the original RITA files, I used R, there is a file called `Processing.Rmd`.
 - The data used is `data/2008-DateTime.csv` via D3.js.
 
 http://sebasibarguen.github.io/udacity-nanodegree-visualization/
